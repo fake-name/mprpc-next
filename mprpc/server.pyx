@@ -6,8 +6,8 @@ import traceback
 import gevent.socket
 import msgpack
 
-from constants import MSGPACKRPC_REQUEST, MSGPACKRPC_RESPONSE, SOCKET_RECV_SIZE
-from exceptions import MethodNotFoundError, RPCProtocolError
+from mprpc.constants import MSGPACKRPC_REQUEST, MSGPACKRPC_RESPONSE, SOCKET_RECV_SIZE
+from mprpc.exceptions import MethodNotFoundError, RPCProtocolError
 from gevent.local import local
 
 
