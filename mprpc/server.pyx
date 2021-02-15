@@ -98,7 +98,7 @@ cdef class RPCServer:
                 continue
 
             if type(req) not in (tuple, list):
-                self._send_error("Invalid protocol", -1, conn)
+                self._send_error("Invalid protocol", -1, conn, "")
                 # reset unpacker as it might have garbage data
                 unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,
                                             **self._unpack_params)
@@ -110,7 +110,8 @@ cdef class RPCServer:
                 ret = method(*args)
 
             except Exception, e:
-                self._send_error(str(e), msg_id, conn)
+                backtrace = traceback.format_exc()
+                self._send_error(str(e), msg_id, conn, backtrace)
 
             else:
                 self._send_result(ret, msg_id, conn)
@@ -144,8 +145,8 @@ cdef class RPCServer:
         msg = (MSGPACKRPC_RESPONSE, msg_id, None, result)
         conn.send(self._packer.pack(msg))
 
-    cdef _send_error(self, str error, int msg_id, _RPCConnection conn):
-        msg = (MSGPACKRPC_RESPONSE, msg_id, error, traceback.format_exc())
+    cdef _send_error(self, str error, int msg_id, _RPCConnection conn, str backtrace):
+        msg = (MSGPACKRPC_RESPONSE, msg_id, error, backtrace)
         conn.send(self._packer.pack(msg))
 
 
