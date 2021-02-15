@@ -1,6 +1,7 @@
 # cython: profile=False
 # -*- coding: utf-8 -*-
 
+import traceback
 import gevent.socket
 import msgpack
 
@@ -143,7 +144,7 @@ cdef class RPCServer:
         conn.send(self._packer.pack(msg))
 
     cdef _send_error(self, str error, int msg_id, _RPCConnection conn):
-        msg = (MSGPACKRPC_RESPONSE, msg_id, error, None)
+        msg = (MSGPACKRPC_RESPONSE, msg_id, error, traceback.format_exc())
         conn.send(self._packer.pack(msg))
 
 
