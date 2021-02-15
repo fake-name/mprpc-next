@@ -1,4 +1,5 @@
 # cython: profile=False
+# cython: language_level=3
 # -*- coding: utf-8 -*-
 
 import traceback
