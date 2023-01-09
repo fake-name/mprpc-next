@@ -969,7 +969,6 @@ struct __pyx_obj_5mprpc_6server_RPCServer {
   PyObject_HEAD
   struct __pyx_vtabstruct_5mprpc_6server_RPCServer *__pyx_vtab;
   PyObject *_packer;
-  PyObject *_unpack_encoding;
   PyObject *_unpack_params;
   PyObject *_tcp_no_delay;
   PyObject *_methods;
@@ -977,7 +976,7 @@ struct __pyx_obj_5mprpc_6server_RPCServer {
 };
 
 
-/* "mprpc/server.pyx":153
+/* "mprpc/server.pyx":144
  * 
  * 
  * cdef class _RPCConnection:             # <<<<<<<<<<<<<<
@@ -1008,7 +1007,7 @@ struct __pyx_vtabstruct_5mprpc_6server_RPCServer {
 static struct __pyx_vtabstruct_5mprpc_6server_RPCServer *__pyx_vtabptr_5mprpc_6server_RPCServer;
 
 
-/* "mprpc/server.pyx":153
+/* "mprpc/server.pyx":144
  * 
  * 
  * cdef class _RPCConnection:             # <<<<<<<<<<<<<<
@@ -1181,9 +1180,6 @@ static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_ve
 static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
 #endif
 
-/* IterFinish.proto */
-static CYTHON_INLINE int __Pyx_IterFinish(void);
-
 /* PyFunctionFastCall.proto */
 #if CYTHON_FAST_PYCALL
 #define __Pyx_PyFunction_FastCall(func, args, nargs)\
@@ -1237,51 +1233,6 @@ static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObje
 /* PyObjectCallOneArg.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
 
-/* PyObjectGetMethod.proto */
-static int __Pyx_PyObject_GetMethod(PyObject *obj, PyObject *name, PyObject **method);
-
-/* PyObjectCallMethod0.proto */
-static PyObject* __Pyx_PyObject_CallMethod0(PyObject* obj, PyObject* method_name);
-
-/* RaiseNeedMoreValuesToUnpack.proto */
-static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index);
-
-/* RaiseTooManyValuesToUnpack.proto */
-static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected);
-
-/* UnpackItemEndCheck.proto */
-static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected);
-
-/* RaiseNoneIterError.proto */
-static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void);
-
-/* UnpackTupleError.proto */
-static void __Pyx_UnpackTupleError(PyObject *, Py_ssize_t index);
-
-/* UnpackTuple2.proto */
-#define __Pyx_unpack_tuple2(tuple, value1, value2, is_tuple, has_known_size, decref_tuple)\
-    (likely(is_tuple || PyTuple_Check(tuple)) ?\
-        (likely(has_known_size || PyTuple_GET_SIZE(tuple) == 2) ?\
-            __Pyx_unpack_tuple2_exact(tuple, value1, value2, decref_tuple) :\
-            (__Pyx_UnpackTupleError(tuple, 2), -1)) :\
-        __Pyx_unpack_tuple2_generic(tuple, value1, value2, has_known_size, decref_tuple))
-static CYTHON_INLINE int __Pyx_unpack_tuple2_exact(
-    PyObject* tuple, PyObject** value1, PyObject** value2, int decref_tuple);
-static int __Pyx_unpack_tuple2_generic(
-    PyObject* tuple, PyObject** value1, PyObject** value2, int has_known_size, int decref_tuple);
-
-/* dict_iter.proto */
-static CYTHON_INLINE PyObject* __Pyx_dict_iterator(PyObject* dict, int is_dict, PyObject* method_name,
-                                                   Py_ssize_t* p_orig_length, int* p_is_dict);
-static CYTHON_INLINE int __Pyx_dict_iter_next(PyObject* dict_or_iter, Py_ssize_t orig_length, Py_ssize_t* ppos,
-                                              PyObject** pkey, PyObject** pvalue, PyObject** pitem, int is_dict);
-
-/* RaiseDoubleKeywords.proto */
-static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
-
-/* MergeKeywords.proto */
-static int __Pyx_MergeKeywords(PyObject *kwdict, PyObject *source_mapping);
-
 /* PyObjectSetAttrStr.proto */
 #if CYTHON_USE_TYPE_SLOTS
 #define __Pyx_PyObject_DelAttrStr(o,n) __Pyx_PyObject_SetAttrStr(o, n, NULL)
@@ -1319,6 +1270,9 @@ static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyOb
 /* RaiseArgTupleInvalid.proto */
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
+
+/* RaiseDoubleKeywords.proto */
+static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
 
 /* ParseKeywords.proto */
 static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
@@ -1403,8 +1357,23 @@ static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject 
 static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
 #endif
 
+/* RaiseTooManyValuesToUnpack.proto */
+static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected);
+
+/* RaiseNeedMoreValuesToUnpack.proto */
+static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index);
+
+/* RaiseNoneIterError.proto */
+static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void);
+
 /* RaiseException.proto */
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
+
+/* IterFinish.proto */
+static CYTHON_INLINE int __Pyx_IterFinish(void);
+
+/* UnpackItemEndCheck.proto */
+static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected);
 
 /* GetAttr.proto */
 static CYTHON_INLINE PyObject *__Pyx_GetAttr(PyObject *, PyObject *);
@@ -1545,9 +1514,7 @@ static const char __pyx_k_recv[] = "recv";
 static const char __pyx_k_sock[] = "sock";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_close[] = "close";
-static const char __pyx_k_items[] = "items";
 static const char __pyx_k_local[] = "local";
-static const char __pyx_k_utf_8[] = "utf-8";
 static const char __pyx_k_Packer[] = "Packer";
 static const char __pyx_k_gevent[] = "gevent";
 static const char __pyx_k_import[] = "__import__";
@@ -1559,7 +1526,6 @@ static const char __pyx_k_address[] = "address";
 static const char __pyx_k_msgpack[] = "msgpack";
 static const char __pyx_k_sendall[] = "sendall";
 static const char __pyx_k_Unpacker[] = "Unpacker";
-static const char __pyx_k_encoding[] = "encoding";
 static const char __pyx_k_getstate[] = "__getstate__";
 static const char __pyx_k_pyx_type[] = "__pyx_type";
 static const char __pyx_k_setstate[] = "__setstate__";
@@ -1588,13 +1554,11 @@ static const char __pyx_k_use_bin_type[] = "use_bin_type";
 static const char __pyx_k_RPCConnection[] = "_RPCConnection";
 static const char __pyx_k_StopIteration[] = "StopIteration";
 static const char __pyx_k_gevent_socket[] = "gevent.socket";
-static const char __pyx_k_pack_encoding[] = "pack_encoding";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_unpack_params[] = "unpack_params";
 static const char __pyx_k_mprpc_constants[] = "mprpc.constants";
 static const char __pyx_k_pyx_PickleError[] = "__pyx_PickleError";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
-static const char __pyx_k_unpack_encoding[] = "unpack_encoding";
 static const char __pyx_k_Invalid_protocol[] = "Invalid protocol";
 static const char __pyx_k_RPCProtocolError[] = "RPCProtocolError";
 static const char __pyx_k_SOCKET_RECV_SIZE[] = "SOCKET_RECV_SIZE";
@@ -1607,7 +1571,7 @@ static const char __pyx_k_MethodNotFoundError[] = "MethodNotFoundError";
 static const char __pyx_k_pyx_unpickle_RPCServer[] = "__pyx_unpickle_RPCServer";
 static const char __pyx_k_Method_is_not_callable_s[] = "Method is not callable: %s";
 static const char __pyx_k_pyx_unpickle__RPCConnection[] = "__pyx_unpickle__RPCConnection";
-static const char __pyx_k_Incompatible_checksums_0x_x_vs_0[] = "Incompatible checksums (0x%x vs (0x80eed58, 0xe104443, 0xb6489f1) = (_address, _methods, _packer, _tcp_no_delay, _unpack_encoding, _unpack_params))";
+static const char __pyx_k_Incompatible_checksums_0x_x_vs_0[] = "Incompatible checksums (0x%x vs (0xd9f24bc, 0xcd83654, 0xe9359e3) = (_address, _methods, _packer, _tcp_no_delay, _unpack_params))";
 static const char __pyx_k_Incompatible_checksums_0x_x_vs_0_2[] = "Incompatible checksums (0x%x vs (0xc27dccd, 0xefe1296, 0xfb6e6f2) = (_socket))";
 static PyObject *__pyx_kp_u_;
 static PyObject *__pyx_n_s_IPPROTO_TCP;
@@ -1636,7 +1600,6 @@ static PyObject *__pyx_n_s_client_port;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_close;
 static PyObject *__pyx_n_s_dict;
-static PyObject *__pyx_n_s_encoding;
 static PyObject *__pyx_n_s_feed;
 static PyObject *__pyx_n_s_format_exc;
 static PyObject *__pyx_n_s_get;
@@ -1645,7 +1608,6 @@ static PyObject *__pyx_n_s_gevent;
 static PyObject *__pyx_n_s_gevent_local;
 static PyObject *__pyx_n_s_gevent_socket;
 static PyObject *__pyx_n_s_import;
-static PyObject *__pyx_n_s_items;
 static PyObject *__pyx_n_s_local;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_mprpc_constants;
@@ -1655,7 +1617,6 @@ static PyObject *__pyx_n_s_msgpack;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_new;
 static PyObject *__pyx_n_s_pack;
-static PyObject *__pyx_n_u_pack_encoding;
 static PyObject *__pyx_n_u_pack_params;
 static PyObject *__pyx_n_s_pickle;
 static PyObject *__pyx_n_s_pop;
@@ -1683,12 +1644,10 @@ static PyObject *__pyx_kp_s_stringsource;
 static PyObject *__pyx_n_u_tcp_no_delay;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_traceback;
-static PyObject *__pyx_n_u_unpack_encoding;
 static PyObject *__pyx_n_u_unpack_params;
 static PyObject *__pyx_n_s_update;
 static PyObject *__pyx_n_s_use_bin_type;
 static PyObject *__pyx_n_s_use_list;
-static PyObject *__pyx_kp_u_utf_8;
 static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6server_RPCServer *__pyx_v_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs); /* proto */
 static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_2__call__(struct __pyx_obj_5mprpc_6server_RPCServer *__pyx_v_self, PyObject *__pyx_v_sock, PyObject *__pyx_v_address); /* proto */
 static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_11client_host___get__(struct __pyx_obj_5mprpc_6server_RPCServer *__pyx_v_self); /* proto */
@@ -1706,10 +1665,10 @@ static PyObject *__pyx_tp_new_5mprpc_6server_RPCServer(PyTypeObject *t, PyObject
 static PyObject *__pyx_tp_new_5mprpc_6server__RPCConnection(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop = {0, &__pyx_n_s_pop, 0, 0, 0};
 static PyObject *__pyx_int_1;
-static PyObject *__pyx_int_135195992;
-static PyObject *__pyx_int_191138289;
 static PyObject *__pyx_int_203939021;
-static PyObject *__pyx_int_235947075;
+static PyObject *__pyx_int_215496276;
+static PyObject *__pyx_int_228533436;
+static PyObject *__pyx_int_244537827;
 static PyObject *__pyx_int_251531926;
 static PyObject *__pyx_int_263644914;
 static PyObject *__pyx_tuple__3;
@@ -1720,12 +1679,12 @@ static PyObject *__pyx_codeobj__6;
 static PyObject *__pyx_codeobj__8;
 /* Late includes */
 
-/* "mprpc/server.pyx":47
+/* "mprpc/server.pyx":42
  *     cdef _address
  * 
  *     def __init__(self, *args, **kwargs):             # <<<<<<<<<<<<<<
- *         pack_encoding = kwargs.pop('pack_encoding', 'utf-8')
  *         pack_params = kwargs.pop('pack_params', dict(use_bin_type=True))
+ * 
  */
 
 /* Python wrapper */
@@ -1751,7 +1710,6 @@ static int __pyx_pw_5mprpc_6server_9RPCServer_1__init__(PyObject *__pyx_v_self, 
 }
 
 static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6server_RPCServer *__pyx_v_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs) {
-  PyObject *__pyx_v_pack_encoding = NULL;
   PyObject *__pyx_v_pack_params = NULL;
   int __pyx_r;
   __Pyx_RefNannyDeclarations
@@ -1767,60 +1725,33 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "mprpc/server.pyx":48
+  /* "mprpc/server.pyx":43
  * 
  *     def __init__(self, *args, **kwargs):
- *         pack_encoding = kwargs.pop('pack_encoding', 'utf-8')             # <<<<<<<<<<<<<<
- *         pack_params = kwargs.pop('pack_params', dict(use_bin_type=True))
- * 
- */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_pack_encoding, __pyx_kp_u_utf_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_pack_encoding = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "mprpc/server.pyx":49
- *     def __init__(self, *args, **kwargs):
- *         pack_encoding = kwargs.pop('pack_encoding', 'utf-8')
  *         pack_params = kwargs.pop('pack_params', dict(use_bin_type=True))             # <<<<<<<<<<<<<<
  * 
- *         self._unpack_encoding = kwargs.pop('unpack_encoding', 'utf-8')
+ *         self._unpack_params = kwargs.pop('unpack_params', dict(use_list=False))
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_use_bin_type, Py_True) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_pack_params, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_use_bin_type, Py_True) < 0) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_pack_params, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_pack_params = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "mprpc/server.pyx":51
+  /* "mprpc/server.pyx":45
  *         pack_params = kwargs.pop('pack_params', dict(use_bin_type=True))
  * 
- *         self._unpack_encoding = kwargs.pop('unpack_encoding', 'utf-8')             # <<<<<<<<<<<<<<
- *         self._unpack_params = kwargs.pop('unpack_params', dict(use_list=False))
- * 
- */
-  __pyx_t_2 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_unpack_encoding, __pyx_kp_u_utf_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
-  __Pyx_GOTREF(__pyx_v_self->_unpack_encoding);
-  __Pyx_DECREF(__pyx_v_self->_unpack_encoding);
-  __pyx_v_self->_unpack_encoding = __pyx_t_2;
-  __pyx_t_2 = 0;
-
-  /* "mprpc/server.pyx":52
- * 
- *         self._unpack_encoding = kwargs.pop('unpack_encoding', 'utf-8')
  *         self._unpack_params = kwargs.pop('unpack_params', dict(use_list=False))             # <<<<<<<<<<<<<<
  * 
  *         self._tcp_no_delay = kwargs.pop('tcp_no_delay', False)
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_use_list, Py_False) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_unpack_params, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_use_list, Py_False) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_unpack_params, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_GIVEREF(__pyx_t_1);
@@ -1829,14 +1760,14 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
   __pyx_v_self->_unpack_params = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "mprpc/server.pyx":54
+  /* "mprpc/server.pyx":47
  *         self._unpack_params = kwargs.pop('unpack_params', dict(use_list=False))
  * 
  *         self._tcp_no_delay = kwargs.pop('tcp_no_delay', False)             # <<<<<<<<<<<<<<
  *         self._methods = {}
  * 
  */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_tcp_no_delay, Py_False); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_tcp_no_delay, Py_False); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->_tcp_no_delay);
@@ -1844,14 +1775,14 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
   __pyx_v_self->_tcp_no_delay = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "mprpc/server.pyx":55
+  /* "mprpc/server.pyx":48
  * 
  *         self._tcp_no_delay = kwargs.pop('tcp_no_delay', False)
  *         self._methods = {}             # <<<<<<<<<<<<<<
  * 
- *         self._packer = msgpack.Packer(encoding=pack_encoding, **pack_params)
+ *         self._packer = msgpack.Packer(**pack_params)
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->_methods);
@@ -1859,29 +1790,30 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
   __pyx_v_self->_methods = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "mprpc/server.pyx":57
+  /* "mprpc/server.pyx":50
  *         self._methods = {}
  * 
- *         self._packer = msgpack.Packer(encoding=pack_encoding, **pack_params)             # <<<<<<<<<<<<<<
+ *         self._packer = msgpack.Packer(**pack_params)             # <<<<<<<<<<<<<<
  * 
  *         self._address = local()
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_msgpack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_msgpack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Packer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Packer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_encoding, __pyx_v_pack_encoding) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
-  __pyx_t_1 = __pyx_t_3;
-  __pyx_t_3 = 0;
   if (unlikely(__pyx_v_pack_params == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "argument after ** must be a mapping, not NoneType");
-    __PYX_ERR(0, 57, __pyx_L1_error)
+    __PYX_ERR(0, 50, __pyx_L1_error)
   }
-  if (__Pyx_MergeKeywords(__pyx_t_1, __pyx_v_pack_params) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (likely(PyDict_CheckExact(__pyx_v_pack_params))) {
+    __pyx_t_1 = PyDict_Copy(__pyx_v_pack_params); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  } else {
+    __pyx_t_1 = PyObject_CallFunctionObjArgs((PyObject*)&PyDict_Type, __pyx_v_pack_params, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -1891,14 +1823,14 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
   __pyx_v_self->_packer = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "mprpc/server.pyx":59
- *         self._packer = msgpack.Packer(encoding=pack_encoding, **pack_params)
+  /* "mprpc/server.pyx":52
+ *         self._packer = msgpack.Packer(**pack_params)
  * 
  *         self._address = local()             # <<<<<<<<<<<<<<
  *         self._address.client_host = None
  *         self._address.client_port = None
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_local); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_local); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -1912,7 +1844,7 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
   }
   __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_GIVEREF(__pyx_t_3);
@@ -1921,25 +1853,25 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
   __pyx_v_self->_address = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "mprpc/server.pyx":60
+  /* "mprpc/server.pyx":53
  * 
  *         self._address = local()
  *         self._address.client_host = None             # <<<<<<<<<<<<<<
  *         self._address.client_port = None
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_host, Py_None) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_host, Py_None) < 0) __PYX_ERR(0, 53, __pyx_L1_error)
 
-  /* "mprpc/server.pyx":61
+  /* "mprpc/server.pyx":54
  *         self._address = local()
  *         self._address.client_host = None
  *         self._address.client_port = None             # <<<<<<<<<<<<<<
  * 
  *         if args and isinstance(args[0], gevent.socket.socket):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_port, Py_None) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_port, Py_None) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
 
-  /* "mprpc/server.pyx":63
+  /* "mprpc/server.pyx":56
  *         self._address.client_port = None
  * 
  *         if args and isinstance(args[0], gevent.socket.socket):             # <<<<<<<<<<<<<<
@@ -1952,17 +1884,17 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
     __pyx_t_4 = __pyx_t_5;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_3 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_gevent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_gevent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_socket); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_socket); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_socket); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_socket); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = PyObject_IsInstance(__pyx_t_3, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_5 = PyObject_IsInstance(__pyx_t_3, __pyx_t_1); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_6 = (__pyx_t_5 != 0);
@@ -1970,18 +1902,18 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_4) {
 
-    /* "mprpc/server.pyx":64
+    /* "mprpc/server.pyx":57
  * 
  *         if args and isinstance(args[0], gevent.socket.socket):
  *             self._run(_RPCConnection(args[0]))             # <<<<<<<<<<<<<<
  * 
  *     def __call__(self, sock, address):
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_run); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_run); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_5mprpc_6server__RPCConnection), __pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_5mprpc_6server__RPCConnection), __pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_2 = NULL;
@@ -1997,12 +1929,12 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
     __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_7);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "mprpc/server.pyx":63
+    /* "mprpc/server.pyx":56
  *         self._address.client_port = None
  * 
  *         if args and isinstance(args[0], gevent.socket.socket):             # <<<<<<<<<<<<<<
@@ -2011,12 +1943,12 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
  */
   }
 
-  /* "mprpc/server.pyx":47
+  /* "mprpc/server.pyx":42
  *     cdef _address
  * 
  *     def __init__(self, *args, **kwargs):             # <<<<<<<<<<<<<<
- *         pack_encoding = kwargs.pop('pack_encoding', 'utf-8')
  *         pack_params = kwargs.pop('pack_params', dict(use_bin_type=True))
+ * 
  */
 
   /* function exit code */
@@ -2030,13 +1962,12 @@ static int __pyx_pf_5mprpc_6server_9RPCServer___init__(struct __pyx_obj_5mprpc_6
   __Pyx_AddTraceback("mprpc.server.RPCServer.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_pack_encoding);
   __Pyx_XDECREF(__pyx_v_pack_params);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "mprpc/server.pyx":66
+/* "mprpc/server.pyx":59
  *             self._run(_RPCConnection(args[0]))
  * 
  *     def __call__(self, sock, address):             # <<<<<<<<<<<<<<
@@ -2078,11 +2009,11 @@ static PyObject *__pyx_pw_5mprpc_6server_9RPCServer_3__call__(PyObject *__pyx_v_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_address)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__call__", 1, 2, 2, 1); __PYX_ERR(0, 66, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__call__", 1, 2, 2, 1); __PYX_ERR(0, 59, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__call__") < 0)) __PYX_ERR(0, 66, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__call__") < 0)) __PYX_ERR(0, 59, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2095,7 +2026,7 @@ static PyObject *__pyx_pw_5mprpc_6server_9RPCServer_3__call__(PyObject *__pyx_v_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__call__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 66, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__call__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 59, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("mprpc.server.RPCServer.__call__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2124,39 +2055,39 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_2__call__(struct __pyx_obj_5
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__call__", 0);
 
-  /* "mprpc/server.pyx":67
+  /* "mprpc/server.pyx":60
  * 
  *     def __call__(self, sock, address):
  *         if self._tcp_no_delay:             # <<<<<<<<<<<<<<
  *             sock.setsockopt(gevent.socket.IPPROTO_TCP, gevent.socket.TCP_NODELAY, 1)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_self->_tcp_no_delay); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_self->_tcp_no_delay); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 60, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "mprpc/server.pyx":68
+    /* "mprpc/server.pyx":61
  *     def __call__(self, sock, address):
  *         if self._tcp_no_delay:
  *             sock.setsockopt(gevent.socket.IPPROTO_TCP, gevent.socket.TCP_NODELAY, 1)             # <<<<<<<<<<<<<<
  * 
  *         self._address.client_host = address[0]
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_sock, __pyx_n_s_setsockopt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_sock, __pyx_n_s_setsockopt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_gevent); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_gevent); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_socket); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_socket); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_IPPROTO_TCP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_IPPROTO_TCP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_gevent); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_gevent); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_socket); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_socket); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_TCP_NODELAY); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_TCP_NODELAY); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_6 = NULL;
@@ -2174,7 +2105,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_2__call__(struct __pyx_obj_5
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_t_4, __pyx_t_5, __pyx_int_1};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -2184,7 +2115,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_2__call__(struct __pyx_obj_5
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_t_4, __pyx_t_5, __pyx_int_1};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -2192,7 +2123,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_2__call__(struct __pyx_obj_5
     } else
     #endif
     {
-      __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 68, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       if (__pyx_t_6) {
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -2206,14 +2137,14 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_2__call__(struct __pyx_obj_5
       PyTuple_SET_ITEM(__pyx_t_8, 2+__pyx_t_7, __pyx_int_1);
       __pyx_t_4 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "mprpc/server.pyx":67
+    /* "mprpc/server.pyx":60
  * 
  *     def __call__(self, sock, address):
  *         if self._tcp_no_delay:             # <<<<<<<<<<<<<<
@@ -2222,40 +2153,40 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_2__call__(struct __pyx_obj_5
  */
   }
 
-  /* "mprpc/server.pyx":70
+  /* "mprpc/server.pyx":63
  *             sock.setsockopt(gevent.socket.IPPROTO_TCP, gevent.socket.TCP_NODELAY, 1)
  * 
  *         self._address.client_host = address[0]             # <<<<<<<<<<<<<<
  *         self._address.client_port = address[1]
  * 
  */
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_address, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_address, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_host, __pyx_t_2) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_host, __pyx_t_2) < 0) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "mprpc/server.pyx":71
+  /* "mprpc/server.pyx":64
  * 
  *         self._address.client_host = address[0]
  *         self._address.client_port = address[1]             # <<<<<<<<<<<<<<
  * 
  *         self._run(_RPCConnection(sock))
  */
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_address, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_address, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_port, __pyx_t_2) < 0) __PYX_ERR(0, 71, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_port, __pyx_t_2) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "mprpc/server.pyx":73
+  /* "mprpc/server.pyx":66
  *         self._address.client_port = address[1]
  * 
  *         self._run(_RPCConnection(sock))             # <<<<<<<<<<<<<<
  * 
  *     property client_host:
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_run); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_run); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_8 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_5mprpc_6server__RPCConnection), __pyx_v_sock); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_5mprpc_6server__RPCConnection), __pyx_v_sock); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -2270,12 +2201,12 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_2__call__(struct __pyx_obj_5
   __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_5, __pyx_t_8) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_8);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "mprpc/server.pyx":66
+  /* "mprpc/server.pyx":59
  *             self._run(_RPCConnection(args[0]))
  * 
  *     def __call__(self, sock, address):             # <<<<<<<<<<<<<<
@@ -2301,7 +2232,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_2__call__(struct __pyx_obj_5
   return __pyx_r;
 }
 
-/* "mprpc/server.pyx":76
+/* "mprpc/server.pyx":69
  * 
  *     property client_host:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2331,7 +2262,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_11client_host___get__(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "mprpc/server.pyx":77
+  /* "mprpc/server.pyx":70
  *     property client_host:
  *         def __get__(self):
  *             return self._address.client_host             # <<<<<<<<<<<<<<
@@ -2339,13 +2270,13 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_11client_host___get__(struct
  *     property client_port:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_host); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_host); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "mprpc/server.pyx":76
+  /* "mprpc/server.pyx":69
  * 
  *     property client_host:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2364,7 +2295,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_11client_host___get__(struct
   return __pyx_r;
 }
 
-/* "mprpc/server.pyx":80
+/* "mprpc/server.pyx":73
  * 
  *     property client_port:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2394,7 +2325,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_11client_port___get__(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "mprpc/server.pyx":81
+  /* "mprpc/server.pyx":74
  *     property client_port:
  *         def __get__(self):
  *             return self._address.client_port             # <<<<<<<<<<<<<<
@@ -2402,13 +2333,13 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_11client_port___get__(struct
  *     def _run(self, _RPCConnection conn):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_port); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_address, __pyx_n_s_client_port); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "mprpc/server.pyx":80
+  /* "mprpc/server.pyx":73
  * 
  *     property client_port:
  *         def __get__(self):             # <<<<<<<<<<<<<<
@@ -2427,7 +2358,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_11client_port___get__(struct
   return __pyx_r;
 }
 
-/* "mprpc/server.pyx":83
+/* "mprpc/server.pyx":76
  *             return self._address.client_port
  * 
  *     def _run(self, _RPCConnection conn):             # <<<<<<<<<<<<<<
@@ -2444,7 +2375,7 @@ static PyObject *__pyx_pw_5mprpc_6server_9RPCServer_5_run(PyObject *__pyx_v_self
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_run (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_conn), __pyx_ptype_5mprpc_6server__RPCConnection, 1, "conn", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_conn), __pyx_ptype_5mprpc_6server__RPCConnection, 1, "conn", 0))) __PYX_ERR(0, 76, __pyx_L1_error)
   __pyx_r = __pyx_pf_5mprpc_6server_9RPCServer_4_run(((struct __pyx_obj_5mprpc_6server_RPCServer *)__pyx_v_self), ((struct __pyx_obj_5mprpc_6server__RPCConnection *)__pyx_v_conn));
 
   /* function exit code */
@@ -2485,78 +2416,63 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_run", 0);
 
-  /* "mprpc/server.pyx":87
+  /* "mprpc/server.pyx":80
  *         cdef int msg_id
  * 
- *         unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,             # <<<<<<<<<<<<<<
- *                                     **self._unpack_params)
- *         while True:
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_msgpack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Unpacker); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_encoding, __pyx_v_self->_unpack_encoding) < 0) __PYX_ERR(0, 87, __pyx_L1_error)
-  __pyx_t_1 = __pyx_t_3;
-  __pyx_t_3 = 0;
-
-  /* "mprpc/server.pyx":88
- * 
- *         unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,
- *                                     **self._unpack_params)             # <<<<<<<<<<<<<<
+ *         unpacker = msgpack.Unpacker(**self._unpack_params)             # <<<<<<<<<<<<<<
  *         while True:
  *             data = conn.recv(SOCKET_RECV_SIZE)
  */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_msgpack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Unpacker); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (unlikely(__pyx_v_self->_unpack_params == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "argument after ** must be a mapping, not NoneType");
-    __PYX_ERR(0, 88, __pyx_L1_error)
+    __PYX_ERR(0, 80, __pyx_L1_error)
   }
-  if (__Pyx_MergeKeywords(__pyx_t_1, __pyx_v_self->_unpack_params) < 0) __PYX_ERR(0, 88, __pyx_L1_error)
-
-  /* "mprpc/server.pyx":87
- *         cdef int msg_id
- * 
- *         unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,             # <<<<<<<<<<<<<<
- *                                     **self._unpack_params)
- *         while True:
- */
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
+  if (likely(PyDict_CheckExact(__pyx_v_self->_unpack_params))) {
+    __pyx_t_1 = PyDict_Copy(__pyx_v_self->_unpack_params); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  } else {
+    __pyx_t_1 = PyObject_CallFunctionObjArgs((PyObject*)&PyDict_Type, __pyx_v_self->_unpack_params, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_unpacker = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "mprpc/server.pyx":89
- *         unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,
- *                                     **self._unpack_params)
+  /* "mprpc/server.pyx":81
+ * 
+ *         unpacker = msgpack.Unpacker(**self._unpack_params)
  *         while True:             # <<<<<<<<<<<<<<
  *             data = conn.recv(SOCKET_RECV_SIZE)
  *             if not data:
  */
   while (1) {
 
-    /* "mprpc/server.pyx":90
- *                                     **self._unpack_params)
+    /* "mprpc/server.pyx":82
+ *         unpacker = msgpack.Unpacker(**self._unpack_params)
  *         while True:
  *             data = conn.recv(SOCKET_RECV_SIZE)             # <<<<<<<<<<<<<<
  *             if not data:
  *                 break
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_SOCKET_RECV_SIZE); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_SOCKET_RECV_SIZE); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = ((struct __pyx_vtabstruct_5mprpc_6server__RPCConnection *)__pyx_v_conn->__pyx_vtab)->recv(__pyx_v_conn, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+    __pyx_t_3 = ((struct __pyx_vtabstruct_5mprpc_6server__RPCConnection *)__pyx_v_conn->__pyx_vtab)->recv(__pyx_v_conn, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (!(likely(PyBytes_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 90, __pyx_L1_error)
+    if (!(likely(PyBytes_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_data, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "mprpc/server.pyx":91
+    /* "mprpc/server.pyx":83
  *         while True:
  *             data = conn.recv(SOCKET_RECV_SIZE)
  *             if not data:             # <<<<<<<<<<<<<<
@@ -2567,7 +2483,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
     __pyx_t_6 = ((!__pyx_t_5) != 0);
     if (__pyx_t_6) {
 
-      /* "mprpc/server.pyx":92
+      /* "mprpc/server.pyx":84
  *             data = conn.recv(SOCKET_RECV_SIZE)
  *             if not data:
  *                 break             # <<<<<<<<<<<<<<
@@ -2576,7 +2492,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
  */
       goto __pyx_L4_break;
 
-      /* "mprpc/server.pyx":91
+      /* "mprpc/server.pyx":83
  *         while True:
  *             data = conn.recv(SOCKET_RECV_SIZE)
  *             if not data:             # <<<<<<<<<<<<<<
@@ -2585,14 +2501,14 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
  */
     }
 
-    /* "mprpc/server.pyx":94
+    /* "mprpc/server.pyx":86
  *                 break
  * 
  *             unpacker.feed(data)             # <<<<<<<<<<<<<<
  *             try:
  *                 req = next(unpacker)
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_unpacker, __pyx_n_s_feed); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_unpacker, __pyx_n_s_feed); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_2 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -2606,12 +2522,12 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
     }
     __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_v_data) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_data);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "mprpc/server.pyx":95
+    /* "mprpc/server.pyx":87
  * 
  *             unpacker.feed(data)
  *             try:             # <<<<<<<<<<<<<<
@@ -2627,19 +2543,19 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
       __Pyx_XGOTREF(__pyx_t_9);
       /*try:*/ {
 
-        /* "mprpc/server.pyx":96
+        /* "mprpc/server.pyx":88
  *             unpacker.feed(data)
  *             try:
  *                 req = next(unpacker)             # <<<<<<<<<<<<<<
  *             except StopIteration:
  *                 continue
  */
-        __pyx_t_3 = __Pyx_PyIter_Next(__pyx_v_unpacker); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L6_error)
+        __pyx_t_3 = __Pyx_PyIter_Next(__pyx_v_unpacker); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_XDECREF_SET(__pyx_v_req, __pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "mprpc/server.pyx":95
+        /* "mprpc/server.pyx":87
  * 
  *             unpacker.feed(data)
  *             try:             # <<<<<<<<<<<<<<
@@ -2656,7 +2572,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "mprpc/server.pyx":97
+      /* "mprpc/server.pyx":89
  *             try:
  *                 req = next(unpacker)
  *             except StopIteration:             # <<<<<<<<<<<<<<
@@ -2666,12 +2582,12 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
       __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_StopIteration);
       if (__pyx_t_4) {
         __Pyx_AddTraceback("mprpc.server.RPCServer._run", __pyx_clineno, __pyx_lineno, __pyx_filename);
-        if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_1, &__pyx_t_2) < 0) __PYX_ERR(0, 97, __pyx_L8_except_error)
+        if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_1, &__pyx_t_2) < 0) __PYX_ERR(0, 89, __pyx_L8_except_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_GOTREF(__pyx_t_2);
 
-        /* "mprpc/server.pyx":98
+        /* "mprpc/server.pyx":90
  *                 req = next(unpacker)
  *             except StopIteration:
  *                 continue             # <<<<<<<<<<<<<<
@@ -2688,7 +2604,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
       goto __pyx_L8_except_error;
       __pyx_L8_except_error:;
 
-      /* "mprpc/server.pyx":95
+      /* "mprpc/server.pyx":87
  * 
  *             unpacker.feed(data)
  *             try:             # <<<<<<<<<<<<<<
@@ -2709,7 +2625,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
       __pyx_L13_try_end:;
     }
 
-    /* "mprpc/server.pyx":100
+    /* "mprpc/server.pyx":92
  *                 continue
  * 
  *             if type(req) not in (tuple, list):             # <<<<<<<<<<<<<<
@@ -2718,16 +2634,16 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
  */
     __Pyx_INCREF(((PyObject *)Py_TYPE(__pyx_v_req)));
     __pyx_t_2 = ((PyObject *)Py_TYPE(__pyx_v_req));
-    __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_t_2), ((PyObject *)(&PyTuple_Type)), Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_t_2), ((PyObject *)(&PyTuple_Type)), Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 92, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_5) {
     } else {
       __pyx_t_6 = __pyx_t_5;
       goto __pyx_L17_bool_binop_done;
     }
-    __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_t_2), ((PyObject *)(&PyList_Type)), Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_t_2), ((PyObject *)(&PyList_Type)), Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 92, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = __pyx_t_5;
     __pyx_L17_bool_binop_done:;
@@ -2735,72 +2651,57 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
     __pyx_t_5 = (__pyx_t_6 != 0);
     if (__pyx_t_5) {
 
-      /* "mprpc/server.pyx":101
+      /* "mprpc/server.pyx":93
  * 
  *             if type(req) not in (tuple, list):
  *                 self._send_error("Invalid protocol", -1, conn, "")             # <<<<<<<<<<<<<<
  *                 # reset unpacker as it might have garbage data
- *                 unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,
+ *                 unpacker = msgpack.Unpacker(**self._unpack_params)
  */
-      __pyx_t_2 = ((struct __pyx_vtabstruct_5mprpc_6server_RPCServer *)__pyx_v_self->__pyx_vtab)->_send_error(__pyx_v_self, __pyx_kp_u_Invalid_protocol, -1, __pyx_v_conn, __pyx_kp_u_); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+      __pyx_t_2 = ((struct __pyx_vtabstruct_5mprpc_6server_RPCServer *)__pyx_v_self->__pyx_vtab)->_send_error(__pyx_v_self, __pyx_kp_u_Invalid_protocol, -1, __pyx_v_conn, __pyx_kp_u_); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "mprpc/server.pyx":103
+      /* "mprpc/server.pyx":95
  *                 self._send_error("Invalid protocol", -1, conn, "")
  *                 # reset unpacker as it might have garbage data
- *                 unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,             # <<<<<<<<<<<<<<
- *                                             **self._unpack_params)
- *                 continue
- */
-      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_msgpack); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Unpacker); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_encoding, __pyx_v_self->_unpack_encoding) < 0) __PYX_ERR(0, 103, __pyx_L1_error)
-      __pyx_t_2 = __pyx_t_3;
-      __pyx_t_3 = 0;
-
-      /* "mprpc/server.pyx":104
- *                 # reset unpacker as it might have garbage data
- *                 unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,
- *                                             **self._unpack_params)             # <<<<<<<<<<<<<<
+ *                 unpacker = msgpack.Unpacker(**self._unpack_params)             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
+      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_msgpack); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Unpacker); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       if (unlikely(__pyx_v_self->_unpack_params == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "argument after ** must be a mapping, not NoneType");
-        __PYX_ERR(0, 104, __pyx_L1_error)
+        __PYX_ERR(0, 95, __pyx_L1_error)
       }
-      if (__Pyx_MergeKeywords(__pyx_t_2, __pyx_v_self->_unpack_params) < 0) __PYX_ERR(0, 104, __pyx_L1_error)
-
-      /* "mprpc/server.pyx":103
- *                 self._send_error("Invalid protocol", -1, conn, "")
- *                 # reset unpacker as it might have garbage data
- *                 unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,             # <<<<<<<<<<<<<<
- *                                             **self._unpack_params)
- *                 continue
- */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L1_error)
+      if (likely(PyDict_CheckExact(__pyx_v_self->_unpack_params))) {
+        __pyx_t_2 = PyDict_Copy(__pyx_v_self->_unpack_params); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+      } else {
+        __pyx_t_2 = PyObject_CallFunctionObjArgs((PyObject*)&PyDict_Type, __pyx_v_self->_unpack_params, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+      }
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF_SET(__pyx_v_unpacker, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "mprpc/server.pyx":105
- *                 unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,
- *                                             **self._unpack_params)
+      /* "mprpc/server.pyx":96
+ *                 # reset unpacker as it might have garbage data
+ *                 unpacker = msgpack.Unpacker(**self._unpack_params)
  *                 continue             # <<<<<<<<<<<<<<
  * 
  *             (msg_id, method, args) = self._parse_request(req)
  */
       goto __pyx_L3_continue;
 
-      /* "mprpc/server.pyx":100
+      /* "mprpc/server.pyx":92
  *                 continue
  * 
  *             if type(req) not in (tuple, list):             # <<<<<<<<<<<<<<
@@ -2809,14 +2710,14 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
  */
     }
 
-    /* "mprpc/server.pyx":107
+    /* "mprpc/server.pyx":98
  *                 continue
  * 
  *             (msg_id, method, args) = self._parse_request(req)             # <<<<<<<<<<<<<<
  * 
  *             try:
  */
-    __pyx_t_3 = ((struct __pyx_vtabstruct_5mprpc_6server_RPCServer *)__pyx_v_self->__pyx_vtab)->_parse_request(__pyx_v_self, __pyx_v_req); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_3 = ((struct __pyx_vtabstruct_5mprpc_6server_RPCServer *)__pyx_v_self->__pyx_vtab)->_parse_request(__pyx_v_self, __pyx_v_req); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     if (likely(__pyx_t_3 != Py_None)) {
       PyObject* sequence = __pyx_t_3;
@@ -2824,7 +2725,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
       if (unlikely(size != 3)) {
         if (size > 3) __Pyx_RaiseTooManyValuesError(3);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 107, __pyx_L1_error)
+        __PYX_ERR(0, 98, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0); 
@@ -2834,18 +2735,18 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
       __Pyx_INCREF(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_10);
       #else
-      __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_10 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_10 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 98, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       #endif
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else {
-      __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 107, __pyx_L1_error)
+      __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 98, __pyx_L1_error)
     }
-    __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 98, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_msg_id = __pyx_t_4;
     __Pyx_XDECREF_SET(__pyx_v_method, __pyx_t_1);
@@ -2853,7 +2754,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
     __Pyx_XDECREF_SET(__pyx_v_args, __pyx_t_10);
     __pyx_t_10 = 0;
 
-    /* "mprpc/server.pyx":109
+    /* "mprpc/server.pyx":100
  *             (msg_id, method, args) = self._parse_request(req)
  * 
  *             try:             # <<<<<<<<<<<<<<
@@ -2869,22 +2770,22 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
       __Pyx_XGOTREF(__pyx_t_7);
       /*try:*/ {
 
-        /* "mprpc/server.pyx":110
+        /* "mprpc/server.pyx":101
  * 
  *             try:
  *                 ret = method(*args)             # <<<<<<<<<<<<<<
  * 
  *             except Exception, e:
  */
-        __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_v_args); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L19_error)
+        __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_v_args); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L19_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_10 = __Pyx_PyObject_Call(__pyx_v_method, __pyx_t_3, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 110, __pyx_L19_error)
+        __pyx_t_10 = __Pyx_PyObject_Call(__pyx_v_method, __pyx_t_3, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 101, __pyx_L19_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_XDECREF_SET(__pyx_v_ret, __pyx_t_10);
         __pyx_t_10 = 0;
 
-        /* "mprpc/server.pyx":109
+        /* "mprpc/server.pyx":100
  *             (msg_id, method, args) = self._parse_request(req)
  * 
  *             try:             # <<<<<<<<<<<<<<
@@ -2893,7 +2794,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
  */
       }
 
-      /* "mprpc/server.pyx":117
+      /* "mprpc/server.pyx":108
  * 
  *             else:
  *                 self._send_result(ret, msg_id, conn)             # <<<<<<<<<<<<<<
@@ -2901,7 +2802,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
  *     cdef tuple _parse_request(self, req):
  */
       /*else:*/ {
-        __pyx_t_10 = ((struct __pyx_vtabstruct_5mprpc_6server_RPCServer *)__pyx_v_self->__pyx_vtab)->_send_result(__pyx_v_self, __pyx_v_ret, __pyx_v_msg_id, __pyx_v_conn); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 117, __pyx_L21_except_error)
+        __pyx_t_10 = ((struct __pyx_vtabstruct_5mprpc_6server_RPCServer *)__pyx_v_self->__pyx_vtab)->_send_result(__pyx_v_self, __pyx_v_ret, __pyx_v_msg_id, __pyx_v_conn); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 108, __pyx_L21_except_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       }
@@ -2915,7 +2816,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "mprpc/server.pyx":112
+      /* "mprpc/server.pyx":103
  *                 ret = method(*args)
  * 
  *             except Exception, e:             # <<<<<<<<<<<<<<
@@ -2925,23 +2826,23 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
       __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
       if (__pyx_t_4) {
         __Pyx_AddTraceback("mprpc.server.RPCServer._run", __pyx_clineno, __pyx_lineno, __pyx_filename);
-        if (__Pyx_GetException(&__pyx_t_10, &__pyx_t_3, &__pyx_t_1) < 0) __PYX_ERR(0, 112, __pyx_L21_except_error)
+        if (__Pyx_GetException(&__pyx_t_10, &__pyx_t_3, &__pyx_t_1) < 0) __PYX_ERR(0, 103, __pyx_L21_except_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_INCREF(__pyx_t_3);
         __Pyx_XDECREF_SET(__pyx_v_e, __pyx_t_3);
 
-        /* "mprpc/server.pyx":113
+        /* "mprpc/server.pyx":104
  * 
  *             except Exception, e:
  *                 backtrace = traceback.format_exc()             # <<<<<<<<<<<<<<
  *                 self._send_error(str(e), msg_id, conn, backtrace)
  * 
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_traceback); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 113, __pyx_L21_except_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_traceback); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 104, __pyx_L21_except_error)
         __Pyx_GOTREF(__pyx_t_11);
-        __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_format_exc); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 113, __pyx_L21_except_error)
+        __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_format_exc); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 104, __pyx_L21_except_error)
         __Pyx_GOTREF(__pyx_t_12);
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         __pyx_t_11 = NULL;
@@ -2956,23 +2857,23 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
         }
         __pyx_t_2 = (__pyx_t_11) ? __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_11) : __Pyx_PyObject_CallNoArg(__pyx_t_12);
         __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L21_except_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L21_except_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
         __Pyx_XDECREF_SET(__pyx_v_backtrace, __pyx_t_2);
         __pyx_t_2 = 0;
 
-        /* "mprpc/server.pyx":114
+        /* "mprpc/server.pyx":105
  *             except Exception, e:
  *                 backtrace = traceback.format_exc()
  *                 self._send_error(str(e), msg_id, conn, backtrace)             # <<<<<<<<<<<<<<
  * 
  *             else:
  */
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_v_e); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L21_except_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_v_e); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L21_except_error)
         __Pyx_GOTREF(__pyx_t_2);
-        if (!(likely(PyUnicode_CheckExact(__pyx_v_backtrace))||((__pyx_v_backtrace) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_backtrace)->tp_name), 0))) __PYX_ERR(0, 114, __pyx_L21_except_error)
-        __pyx_t_12 = ((struct __pyx_vtabstruct_5mprpc_6server_RPCServer *)__pyx_v_self->__pyx_vtab)->_send_error(__pyx_v_self, ((PyObject*)__pyx_t_2), __pyx_v_msg_id, __pyx_v_conn, ((PyObject*)__pyx_v_backtrace)); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 114, __pyx_L21_except_error)
+        if (!(likely(PyUnicode_CheckExact(__pyx_v_backtrace))||((__pyx_v_backtrace) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_backtrace)->tp_name), 0))) __PYX_ERR(0, 105, __pyx_L21_except_error)
+        __pyx_t_12 = ((struct __pyx_vtabstruct_5mprpc_6server_RPCServer *)__pyx_v_self->__pyx_vtab)->_send_error(__pyx_v_self, ((PyObject*)__pyx_t_2), __pyx_v_msg_id, __pyx_v_conn, ((PyObject*)__pyx_v_backtrace)); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 105, __pyx_L21_except_error)
         __Pyx_GOTREF(__pyx_t_12);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
@@ -2984,7 +2885,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
       goto __pyx_L21_except_error;
       __pyx_L21_except_error:;
 
-      /* "mprpc/server.pyx":109
+      /* "mprpc/server.pyx":100
  *             (msg_id, method, args) = self._parse_request(req)
  * 
  *             try:             # <<<<<<<<<<<<<<
@@ -3007,7 +2908,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
   }
   __pyx_L4_break:;
 
-  /* "mprpc/server.pyx":83
+  /* "mprpc/server.pyx":76
  *             return self._address.client_port
  * 
  *     def _run(self, _RPCConnection conn):             # <<<<<<<<<<<<<<
@@ -3041,7 +2942,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_4_run(struct __pyx_obj_5mprp
   return __pyx_r;
 }
 
-/* "mprpc/server.pyx":119
+/* "mprpc/server.pyx":110
  *                 self._send_result(ret, msg_id, conn)
  * 
  *     cdef tuple _parse_request(self, req):             # <<<<<<<<<<<<<<
@@ -3072,41 +2973,41 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_parse_request", 0);
 
-  /* "mprpc/server.pyx":120
+  /* "mprpc/server.pyx":111
  * 
  *     cdef tuple _parse_request(self, req):
  *         if (len(req) != 4 or req[0] != MSGPACKRPC_REQUEST):             # <<<<<<<<<<<<<<
  *             raise RPCProtocolError('Invalid protocol')
  * 
  */
-  __pyx_t_2 = PyObject_Length(__pyx_v_req); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_v_req); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 111, __pyx_L1_error)
   __pyx_t_3 = ((__pyx_t_2 != 4) != 0);
   if (!__pyx_t_3) {
   } else {
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_req, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_req, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_MSGPACKRPC_REQUEST); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_MSGPACKRPC_REQUEST); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_NE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_1 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "mprpc/server.pyx":121
+    /* "mprpc/server.pyx":112
  *     cdef tuple _parse_request(self, req):
  *         if (len(req) != 4 or req[0] != MSGPACKRPC_REQUEST):
  *             raise RPCProtocolError('Invalid protocol')             # <<<<<<<<<<<<<<
  * 
  *         cdef int msg_id
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_RPCProtocolError); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_RPCProtocolError); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 112, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -3120,14 +3021,14 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
     }
     __pyx_t_6 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_4, __pyx_kp_u_Invalid_protocol) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_kp_u_Invalid_protocol);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 112, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __PYX_ERR(0, 121, __pyx_L1_error)
+    __PYX_ERR(0, 112, __pyx_L1_error)
 
-    /* "mprpc/server.pyx":120
+    /* "mprpc/server.pyx":111
  * 
  *     cdef tuple _parse_request(self, req):
  *         if (len(req) != 4 or req[0] != MSGPACKRPC_REQUEST):             # <<<<<<<<<<<<<<
@@ -3136,7 +3037,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
  */
   }
 
-  /* "mprpc/server.pyx":125
+  /* "mprpc/server.pyx":116
  *         cdef int msg_id
  * 
  *         (_, msg_id, method_name, args) = req             # <<<<<<<<<<<<<<
@@ -3149,7 +3050,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
     if (unlikely(size != 4)) {
       if (size > 4) __Pyx_RaiseTooManyValuesError(4);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 125, __pyx_L1_error)
+      __PYX_ERR(0, 116, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -3172,7 +3073,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
       Py_ssize_t i;
       PyObject** temps[4] = {&__pyx_t_6,&__pyx_t_5,&__pyx_t_4,&__pyx_t_7};
       for (i=0; i < 4; i++) {
-        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 125, __pyx_L1_error)
+        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 116, __pyx_L1_error)
         __Pyx_GOTREF(item);
         *(temps[i]) = item;
       }
@@ -3181,7 +3082,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
   } else {
     Py_ssize_t index = -1;
     PyObject** temps[4] = {&__pyx_t_6,&__pyx_t_5,&__pyx_t_4,&__pyx_t_7};
-    __pyx_t_8 = PyObject_GetIter(__pyx_v_req); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 125, __pyx_L1_error)
+    __pyx_t_8 = PyObject_GetIter(__pyx_v_req); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 116, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __pyx_t_9 = Py_TYPE(__pyx_t_8)->tp_iternext;
     for (index=0; index < 4; index++) {
@@ -3189,7 +3090,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
       __Pyx_GOTREF(item);
       *(temps[index]) = item;
     }
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_8), 4) < 0) __PYX_ERR(0, 125, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_8), 4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
     __pyx_t_9 = NULL;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     goto __pyx_L7_unpacking_done;
@@ -3197,10 +3098,10 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_t_9 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 125, __pyx_L1_error)
+    __PYX_ERR(0, 116, __pyx_L1_error)
     __pyx_L7_unpacking_done:;
   }
-  __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v__ = __pyx_t_6;
   __pyx_t_6 = 0;
@@ -3210,14 +3111,14 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
   __pyx_v_args = __pyx_t_7;
   __pyx_t_7 = 0;
 
-  /* "mprpc/server.pyx":127
+  /* "mprpc/server.pyx":118
  *         (_, msg_id, method_name, args) = req
  * 
  *         method = self._methods.get(method_name, None)             # <<<<<<<<<<<<<<
  * 
  *         if method is None:
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_methods, __pyx_n_s_get); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_methods, __pyx_n_s_get); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   __pyx_t_10 = 0;
@@ -3234,7 +3135,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_4)) {
     PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_method_name, Py_None};
-    __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else
@@ -3242,13 +3143,13 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
     PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_method_name, Py_None};
-    __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_5) {
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -3259,7 +3160,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
     __Pyx_INCREF(Py_None);
     __Pyx_GIVEREF(Py_None);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_10, Py_None);
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -3267,7 +3168,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
   __pyx_v_method = __pyx_t_7;
   __pyx_t_7 = 0;
 
-  /* "mprpc/server.pyx":129
+  /* "mprpc/server.pyx":120
  *         method = self._methods.get(method_name, None)
  * 
  *         if method is None:             # <<<<<<<<<<<<<<
@@ -3278,14 +3179,14 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
   __pyx_t_3 = (__pyx_t_1 != 0);
   if (__pyx_t_3) {
 
-    /* "mprpc/server.pyx":130
+    /* "mprpc/server.pyx":121
  * 
  *         if method is None:
  *             if method_name.startswith('_'):             # <<<<<<<<<<<<<<
  *                 raise MethodNotFoundError('Method not found: %s', method_name)
  * 
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_method_name, __pyx_n_s_startswith); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 130, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_method_name, __pyx_n_s_startswith); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -3299,21 +3200,21 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
     }
     __pyx_t_7 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_6, __pyx_n_u__2) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_n_u__2);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 130, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     if (unlikely(__pyx_t_3)) {
 
-      /* "mprpc/server.pyx":131
+      /* "mprpc/server.pyx":122
  *         if method is None:
  *             if method_name.startswith('_'):
  *                 raise MethodNotFoundError('Method not found: %s', method_name)             # <<<<<<<<<<<<<<
  * 
  *             if not hasattr(self, method_name):
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_MethodNotFoundError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 131, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_MethodNotFoundError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 122, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_6 = NULL;
       __pyx_t_10 = 0;
@@ -3330,7 +3231,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_kp_u_Method_not_found_s, __pyx_v_method_name};
-        __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 131, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 122, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_GOTREF(__pyx_t_7);
       } else
@@ -3338,13 +3239,13 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_kp_u_Method_not_found_s, __pyx_v_method_name};
-        __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 131, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 122, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_GOTREF(__pyx_t_7);
       } else
       #endif
       {
-        __pyx_t_5 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
+        __pyx_t_5 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 122, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         if (__pyx_t_6) {
           __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -3355,16 +3256,16 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
         __Pyx_INCREF(__pyx_v_method_name);
         __Pyx_GIVEREF(__pyx_v_method_name);
         PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_10, __pyx_v_method_name);
-        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 131, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 122, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_Raise(__pyx_t_7, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __PYX_ERR(0, 131, __pyx_L1_error)
+      __PYX_ERR(0, 122, __pyx_L1_error)
 
-      /* "mprpc/server.pyx":130
+      /* "mprpc/server.pyx":121
  * 
  *         if method is None:
  *             if method_name.startswith('_'):             # <<<<<<<<<<<<<<
@@ -3373,25 +3274,25 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
  */
     }
 
-    /* "mprpc/server.pyx":133
+    /* "mprpc/server.pyx":124
  *                 raise MethodNotFoundError('Method not found: %s', method_name)
  * 
  *             if not hasattr(self, method_name):             # <<<<<<<<<<<<<<
  *                 raise MethodNotFoundError('Method not found: %s', method_name)
  * 
  */
-    __pyx_t_3 = __Pyx_HasAttr(((PyObject *)__pyx_v_self), __pyx_v_method_name); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 133, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_HasAttr(((PyObject *)__pyx_v_self), __pyx_v_method_name); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 124, __pyx_L1_error)
     __pyx_t_1 = ((!(__pyx_t_3 != 0)) != 0);
     if (unlikely(__pyx_t_1)) {
 
-      /* "mprpc/server.pyx":134
+      /* "mprpc/server.pyx":125
  * 
  *             if not hasattr(self, method_name):
  *                 raise MethodNotFoundError('Method not found: %s', method_name)             # <<<<<<<<<<<<<<
  * 
  *             method = getattr(self, method_name)
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_MethodNotFoundError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_MethodNotFoundError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_5 = NULL;
       __pyx_t_10 = 0;
@@ -3408,7 +3309,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_kp_u_Method_not_found_s, __pyx_v_method_name};
-        __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 134, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 125, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_GOTREF(__pyx_t_7);
       } else
@@ -3416,13 +3317,13 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_kp_u_Method_not_found_s, __pyx_v_method_name};
-        __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 134, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 125, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_GOTREF(__pyx_t_7);
       } else
       #endif
       {
-        __pyx_t_6 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 134, __pyx_L1_error)
+        __pyx_t_6 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 125, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         if (__pyx_t_5) {
           __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -3433,16 +3334,16 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
         __Pyx_INCREF(__pyx_v_method_name);
         __Pyx_GIVEREF(__pyx_v_method_name);
         PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_10, __pyx_v_method_name);
-        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 134, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 125, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_Raise(__pyx_t_7, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __PYX_ERR(0, 134, __pyx_L1_error)
+      __PYX_ERR(0, 125, __pyx_L1_error)
 
-      /* "mprpc/server.pyx":133
+      /* "mprpc/server.pyx":124
  *                 raise MethodNotFoundError('Method not found: %s', method_name)
  * 
  *             if not hasattr(self, method_name):             # <<<<<<<<<<<<<<
@@ -3451,37 +3352,37 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
  */
     }
 
-    /* "mprpc/server.pyx":136
+    /* "mprpc/server.pyx":127
  *                 raise MethodNotFoundError('Method not found: %s', method_name)
  * 
  *             method = getattr(self, method_name)             # <<<<<<<<<<<<<<
  *             if not hasattr(method, '__call__'):
  *                 raise MethodNotFoundError('Method is not callable: %s', method_name)
  */
-    __pyx_t_7 = __Pyx_GetAttr(((PyObject *)__pyx_v_self), __pyx_v_method_name); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 136, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_GetAttr(((PyObject *)__pyx_v_self), __pyx_v_method_name); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 127, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF_SET(__pyx_v_method, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "mprpc/server.pyx":137
+    /* "mprpc/server.pyx":128
  * 
  *             method = getattr(self, method_name)
  *             if not hasattr(method, '__call__'):             # <<<<<<<<<<<<<<
  *                 raise MethodNotFoundError('Method is not callable: %s', method_name)
  * 
  */
-    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_method, __pyx_n_u_call); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 137, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_method, __pyx_n_u_call); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 128, __pyx_L1_error)
     __pyx_t_3 = ((!(__pyx_t_1 != 0)) != 0);
     if (unlikely(__pyx_t_3)) {
 
-      /* "mprpc/server.pyx":138
+      /* "mprpc/server.pyx":129
  *             method = getattr(self, method_name)
  *             if not hasattr(method, '__call__'):
  *                 raise MethodNotFoundError('Method is not callable: %s', method_name)             # <<<<<<<<<<<<<<
  * 
  *             self._methods[method_name] = method
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_MethodNotFoundError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_MethodNotFoundError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 129, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_6 = NULL;
       __pyx_t_10 = 0;
@@ -3498,7 +3399,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_kp_u_Method_is_not_callable_s, __pyx_v_method_name};
-        __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 138, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 129, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_GOTREF(__pyx_t_7);
       } else
@@ -3506,13 +3407,13 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
         PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_kp_u_Method_is_not_callable_s, __pyx_v_method_name};
-        __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 138, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_10, 2+__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 129, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_GOTREF(__pyx_t_7);
       } else
       #endif
       {
-        __pyx_t_5 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
+        __pyx_t_5 = PyTuple_New(2+__pyx_t_10); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 129, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         if (__pyx_t_6) {
           __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -3523,16 +3424,16 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
         __Pyx_INCREF(__pyx_v_method_name);
         __Pyx_GIVEREF(__pyx_v_method_name);
         PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_10, __pyx_v_method_name);
-        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 138, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 129, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_Raise(__pyx_t_7, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __PYX_ERR(0, 138, __pyx_L1_error)
+      __PYX_ERR(0, 129, __pyx_L1_error)
 
-      /* "mprpc/server.pyx":137
+      /* "mprpc/server.pyx":128
  * 
  *             method = getattr(self, method_name)
  *             if not hasattr(method, '__call__'):             # <<<<<<<<<<<<<<
@@ -3541,16 +3442,16 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
  */
     }
 
-    /* "mprpc/server.pyx":140
+    /* "mprpc/server.pyx":131
  *                 raise MethodNotFoundError('Method is not callable: %s', method_name)
  * 
  *             self._methods[method_name] = method             # <<<<<<<<<<<<<<
  * 
  *         return (msg_id, method, args)
  */
-    if (unlikely(PyObject_SetItem(__pyx_v_self->_methods, __pyx_v_method_name, __pyx_v_method) < 0)) __PYX_ERR(0, 140, __pyx_L1_error)
+    if (unlikely(PyObject_SetItem(__pyx_v_self->_methods, __pyx_v_method_name, __pyx_v_method) < 0)) __PYX_ERR(0, 131, __pyx_L1_error)
 
-    /* "mprpc/server.pyx":129
+    /* "mprpc/server.pyx":120
  *         method = self._methods.get(method_name, None)
  * 
  *         if method is None:             # <<<<<<<<<<<<<<
@@ -3559,7 +3460,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
  */
   }
 
-  /* "mprpc/server.pyx":142
+  /* "mprpc/server.pyx":133
  *             self._methods[method_name] = method
  * 
  *         return (msg_id, method, args)             # <<<<<<<<<<<<<<
@@ -3567,9 +3468,9 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
  *     cdef _send_result(self, object result, int msg_id, _RPCConnection conn):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_msg_id); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_msg_id); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_7);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7);
@@ -3584,7 +3485,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "mprpc/server.pyx":119
+  /* "mprpc/server.pyx":110
  *                 self._send_result(ret, msg_id, conn)
  * 
  *     cdef tuple _parse_request(self, req):             # <<<<<<<<<<<<<<
@@ -3611,7 +3512,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__parse_request(struct __pyx_o
   return __pyx_r;
 }
 
-/* "mprpc/server.pyx":144
+/* "mprpc/server.pyx":135
  *         return (msg_id, method, args)
  * 
  *     cdef _send_result(self, object result, int msg_id, _RPCConnection conn):             # <<<<<<<<<<<<<<
@@ -3631,18 +3532,18 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__send_result(struct __pyx_obj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_send_result", 0);
 
-  /* "mprpc/server.pyx":145
+  /* "mprpc/server.pyx":136
  * 
  *     cdef _send_result(self, object result, int msg_id, _RPCConnection conn):
  *         msg = (MSGPACKRPC_RESPONSE, msg_id, None, result)             # <<<<<<<<<<<<<<
  *         conn.send(self._packer.pack(msg))
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_MSGPACKRPC_RESPONSE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_MSGPACKRPC_RESPONSE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_msg_id); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_msg_id); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -3659,14 +3560,14 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__send_result(struct __pyx_obj
   __pyx_v_msg = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "mprpc/server.pyx":146
+  /* "mprpc/server.pyx":137
  *     cdef _send_result(self, object result, int msg_id, _RPCConnection conn):
  *         msg = (MSGPACKRPC_RESPONSE, msg_id, None, result)
  *         conn.send(self._packer.pack(msg))             # <<<<<<<<<<<<<<
  * 
  *     cdef _send_error(self, str error, int msg_id, _RPCConnection conn, str backtrace):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_packer, __pyx_n_s_pack); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_packer, __pyx_n_s_pack); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3680,16 +3581,16 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__send_result(struct __pyx_obj
   }
   __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_v_msg) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_msg);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyBytes_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 146, __pyx_L1_error)
-  __pyx_t_2 = ((struct __pyx_vtabstruct_5mprpc_6server__RPCConnection *)__pyx_v_conn->__pyx_vtab)->send(__pyx_v_conn, ((PyObject*)__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_5mprpc_6server__RPCConnection *)__pyx_v_conn->__pyx_vtab)->send(__pyx_v_conn, ((PyObject*)__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "mprpc/server.pyx":144
+  /* "mprpc/server.pyx":135
  *         return (msg_id, method, args)
  * 
  *     cdef _send_result(self, object result, int msg_id, _RPCConnection conn):             # <<<<<<<<<<<<<<
@@ -3713,7 +3614,7 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__send_result(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "mprpc/server.pyx":148
+/* "mprpc/server.pyx":139
  *         conn.send(self._packer.pack(msg))
  * 
  *     cdef _send_error(self, str error, int msg_id, _RPCConnection conn, str backtrace):             # <<<<<<<<<<<<<<
@@ -3733,18 +3634,18 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__send_error(struct __pyx_obj_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_send_error", 0);
 
-  /* "mprpc/server.pyx":149
+  /* "mprpc/server.pyx":140
  * 
  *     cdef _send_error(self, str error, int msg_id, _RPCConnection conn, str backtrace):
  *         msg = (MSGPACKRPC_RESPONSE, msg_id, error, backtrace)             # <<<<<<<<<<<<<<
  *         conn.send(self._packer.pack(msg))
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_MSGPACKRPC_RESPONSE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_MSGPACKRPC_RESPONSE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_msg_id); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_msg_id); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -3761,14 +3662,14 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__send_error(struct __pyx_obj_
   __pyx_v_msg = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "mprpc/server.pyx":150
+  /* "mprpc/server.pyx":141
  *     cdef _send_error(self, str error, int msg_id, _RPCConnection conn, str backtrace):
  *         msg = (MSGPACKRPC_RESPONSE, msg_id, error, backtrace)
  *         conn.send(self._packer.pack(msg))             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_packer, __pyx_n_s_pack); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_packer, __pyx_n_s_pack); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3782,16 +3683,16 @@ static PyObject *__pyx_f_5mprpc_6server_9RPCServer__send_error(struct __pyx_obj_
   }
   __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_v_msg) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_msg);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyBytes_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 150, __pyx_L1_error)
-  __pyx_t_2 = ((struct __pyx_vtabstruct_5mprpc_6server__RPCConnection *)__pyx_v_conn->__pyx_vtab)->send(__pyx_v_conn, ((PyObject*)__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_5mprpc_6server__RPCConnection *)__pyx_v_conn->__pyx_vtab)->send(__pyx_v_conn, ((PyObject*)__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "mprpc/server.pyx":148
+  /* "mprpc/server.pyx":139
  *         conn.send(self._packer.pack(msg))
  * 
  *     cdef _send_error(self, str error, int msg_id, _RPCConnection conn, str backtrace):             # <<<<<<<<<<<<<<
@@ -3854,11 +3755,11 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_6__reduce_cython__(struct __
   /* "(tree fragment)":5
  *     cdef object _dict
  *     cdef bint use_setstate
- *     state = (self._address, self._methods, self._packer, self._tcp_no_delay, self._unpack_encoding, self._unpack_params)             # <<<<<<<<<<<<<<
+ *     state = (self._address, self._methods, self._packer, self._tcp_no_delay, self._unpack_params)             # <<<<<<<<<<<<<<
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None:
  */
-  __pyx_t_1 = PyTuple_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_self->_address);
   __Pyx_GIVEREF(__pyx_v_self->_address);
@@ -3872,18 +3773,15 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_6__reduce_cython__(struct __
   __Pyx_INCREF(__pyx_v_self->_tcp_no_delay);
   __Pyx_GIVEREF(__pyx_v_self->_tcp_no_delay);
   PyTuple_SET_ITEM(__pyx_t_1, 3, __pyx_v_self->_tcp_no_delay);
-  __Pyx_INCREF(__pyx_v_self->_unpack_encoding);
-  __Pyx_GIVEREF(__pyx_v_self->_unpack_encoding);
-  PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_v_self->_unpack_encoding);
   __Pyx_INCREF(__pyx_v_self->_unpack_params);
   __Pyx_GIVEREF(__pyx_v_self->_unpack_params);
-  PyTuple_SET_ITEM(__pyx_t_1, 5, __pyx_v_self->_unpack_params);
+  PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_v_self->_unpack_params);
   __pyx_v_state = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "(tree fragment)":6
  *     cdef bint use_setstate
- *     state = (self._address, self._methods, self._packer, self._tcp_no_delay, self._unpack_encoding, self._unpack_params)
+ *     state = (self._address, self._methods, self._packer, self._tcp_no_delay, self._unpack_params)
  *     _dict = getattr(self, '__dict__', None)             # <<<<<<<<<<<<<<
  *     if _dict is not None:
  *         state += (_dict,)
@@ -3894,7 +3792,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_6__reduce_cython__(struct __
   __pyx_t_1 = 0;
 
   /* "(tree fragment)":7
- *     state = (self._address, self._methods, self._packer, self._tcp_no_delay, self._unpack_encoding, self._unpack_params)
+ *     state = (self._address, self._methods, self._packer, self._tcp_no_delay, self._unpack_params)
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None:             # <<<<<<<<<<<<<<
  *         state += (_dict,)
@@ -3927,12 +3825,12 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_6__reduce_cython__(struct __
  *         state += (_dict,)
  *         use_setstate = True             # <<<<<<<<<<<<<<
  *     else:
- *         use_setstate = self._address is not None or self._methods is not None or self._packer is not None or self._tcp_no_delay is not None or self._unpack_encoding is not None or self._unpack_params is not None
+ *         use_setstate = self._address is not None or self._methods is not None or self._packer is not None or self._tcp_no_delay is not None or self._unpack_params is not None
  */
     __pyx_v_use_setstate = 1;
 
     /* "(tree fragment)":7
- *     state = (self._address, self._methods, self._packer, self._tcp_no_delay, self._unpack_encoding, self._unpack_params)
+ *     state = (self._address, self._methods, self._packer, self._tcp_no_delay, self._unpack_params)
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None:             # <<<<<<<<<<<<<<
  *         state += (_dict,)
@@ -3944,9 +3842,9 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_6__reduce_cython__(struct __
   /* "(tree fragment)":11
  *         use_setstate = True
  *     else:
- *         use_setstate = self._address is not None or self._methods is not None or self._packer is not None or self._tcp_no_delay is not None or self._unpack_encoding is not None or self._unpack_params is not None             # <<<<<<<<<<<<<<
+ *         use_setstate = self._address is not None or self._methods is not None or self._packer is not None or self._tcp_no_delay is not None or self._unpack_params is not None             # <<<<<<<<<<<<<<
  *     if use_setstate:
- *         return __pyx_unpickle_RPCServer, (type(self), 0x80eed58, None), state
+ *         return __pyx_unpickle_RPCServer, (type(self), 0xd9f24bc, None), state
  */
   /*else*/ {
     __pyx_t_2 = (__pyx_v_self->_address != Py_None);
@@ -3977,16 +3875,9 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_6__reduce_cython__(struct __
       __pyx_t_3 = __pyx_t_2;
       goto __pyx_L4_bool_binop_done;
     }
-    __pyx_t_2 = (__pyx_v_self->_unpack_encoding != Py_None);
+    __pyx_t_2 = (__pyx_v_self->_unpack_params != Py_None);
     __pyx_t_5 = (__pyx_t_2 != 0);
-    if (!__pyx_t_5) {
-    } else {
-      __pyx_t_3 = __pyx_t_5;
-      goto __pyx_L4_bool_binop_done;
-    }
-    __pyx_t_5 = (__pyx_v_self->_unpack_params != Py_None);
-    __pyx_t_2 = (__pyx_t_5 != 0);
-    __pyx_t_3 = __pyx_t_2;
+    __pyx_t_3 = __pyx_t_5;
     __pyx_L4_bool_binop_done:;
     __pyx_v_use_setstate = __pyx_t_3;
   }
@@ -3994,20 +3885,20 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_6__reduce_cython__(struct __
 
   /* "(tree fragment)":12
  *     else:
- *         use_setstate = self._address is not None or self._methods is not None or self._packer is not None or self._tcp_no_delay is not None or self._unpack_encoding is not None or self._unpack_params is not None
+ *         use_setstate = self._address is not None or self._methods is not None or self._packer is not None or self._tcp_no_delay is not None or self._unpack_params is not None
  *     if use_setstate:             # <<<<<<<<<<<<<<
- *         return __pyx_unpickle_RPCServer, (type(self), 0x80eed58, None), state
+ *         return __pyx_unpickle_RPCServer, (type(self), 0xd9f24bc, None), state
  *     else:
  */
   __pyx_t_3 = (__pyx_v_use_setstate != 0);
   if (__pyx_t_3) {
 
     /* "(tree fragment)":13
- *         use_setstate = self._address is not None or self._methods is not None or self._packer is not None or self._tcp_no_delay is not None or self._unpack_encoding is not None or self._unpack_params is not None
+ *         use_setstate = self._address is not None or self._methods is not None or self._packer is not None or self._tcp_no_delay is not None or self._unpack_params is not None
  *     if use_setstate:
- *         return __pyx_unpickle_RPCServer, (type(self), 0x80eed58, None), state             # <<<<<<<<<<<<<<
+ *         return __pyx_unpickle_RPCServer, (type(self), 0xd9f24bc, None), state             # <<<<<<<<<<<<<<
  *     else:
- *         return __pyx_unpickle_RPCServer, (type(self), 0x80eed58, state)
+ *         return __pyx_unpickle_RPCServer, (type(self), 0xd9f24bc, state)
  */
     __Pyx_XDECREF(__pyx_r);
     __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_pyx_unpickle_RPCServer); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 13, __pyx_L1_error)
@@ -4017,9 +3908,9 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_6__reduce_cython__(struct __
     __Pyx_INCREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
     __Pyx_GIVEREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
     PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    __Pyx_INCREF(__pyx_int_135195992);
-    __Pyx_GIVEREF(__pyx_int_135195992);
-    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_int_135195992);
+    __Pyx_INCREF(__pyx_int_228533436);
+    __Pyx_GIVEREF(__pyx_int_228533436);
+    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_int_228533436);
     __Pyx_INCREF(Py_None);
     __Pyx_GIVEREF(Py_None);
     PyTuple_SET_ITEM(__pyx_t_1, 2, Py_None);
@@ -4040,17 +3931,17 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_6__reduce_cython__(struct __
 
     /* "(tree fragment)":12
  *     else:
- *         use_setstate = self._address is not None or self._methods is not None or self._packer is not None or self._tcp_no_delay is not None or self._unpack_encoding is not None or self._unpack_params is not None
+ *         use_setstate = self._address is not None or self._methods is not None or self._packer is not None or self._tcp_no_delay is not None or self._unpack_params is not None
  *     if use_setstate:             # <<<<<<<<<<<<<<
- *         return __pyx_unpickle_RPCServer, (type(self), 0x80eed58, None), state
+ *         return __pyx_unpickle_RPCServer, (type(self), 0xd9f24bc, None), state
  *     else:
  */
   }
 
   /* "(tree fragment)":15
- *         return __pyx_unpickle_RPCServer, (type(self), 0x80eed58, None), state
+ *         return __pyx_unpickle_RPCServer, (type(self), 0xd9f24bc, None), state
  *     else:
- *         return __pyx_unpickle_RPCServer, (type(self), 0x80eed58, state)             # <<<<<<<<<<<<<<
+ *         return __pyx_unpickle_RPCServer, (type(self), 0xd9f24bc, state)             # <<<<<<<<<<<<<<
  * def __setstate_cython__(self, __pyx_state):
  *     __pyx_unpickle_RPCServer__set_state(self, __pyx_state)
  */
@@ -4063,9 +3954,9 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_6__reduce_cython__(struct __
     __Pyx_INCREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
     __Pyx_GIVEREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
     PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    __Pyx_INCREF(__pyx_int_135195992);
-    __Pyx_GIVEREF(__pyx_int_135195992);
-    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_int_135195992);
+    __Pyx_INCREF(__pyx_int_228533436);
+    __Pyx_GIVEREF(__pyx_int_228533436);
+    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_int_228533436);
     __Pyx_INCREF(__pyx_v_state);
     __Pyx_GIVEREF(__pyx_v_state);
     PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_v_state);
@@ -4105,7 +3996,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_6__reduce_cython__(struct __
 
 /* "(tree fragment)":16
  *     else:
- *         return __pyx_unpickle_RPCServer, (type(self), 0x80eed58, state)
+ *         return __pyx_unpickle_RPCServer, (type(self), 0xd9f24bc, state)
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_RPCServer__set_state(self, __pyx_state)
  */
@@ -4133,7 +4024,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_8__setstate_cython__(struct 
   __Pyx_RefNannySetupContext("__setstate_cython__", 0);
 
   /* "(tree fragment)":17
- *         return __pyx_unpickle_RPCServer, (type(self), 0x80eed58, state)
+ *         return __pyx_unpickle_RPCServer, (type(self), 0xd9f24bc, state)
  * def __setstate_cython__(self, __pyx_state):
  *     __pyx_unpickle_RPCServer__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
@@ -4144,7 +4035,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_8__setstate_cython__(struct 
 
   /* "(tree fragment)":16
  *     else:
- *         return __pyx_unpickle_RPCServer, (type(self), 0x80eed58, state)
+ *         return __pyx_unpickle_RPCServer, (type(self), 0xd9f24bc, state)
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_RPCServer__set_state(self, __pyx_state)
  */
@@ -4162,7 +4053,7 @@ static PyObject *__pyx_pf_5mprpc_6server_9RPCServer_8__setstate_cython__(struct 
   return __pyx_r;
 }
 
-/* "mprpc/server.pyx":156
+/* "mprpc/server.pyx":147
  *     cdef _socket
  * 
  *     def __init__(self, socket):             # <<<<<<<<<<<<<<
@@ -4199,7 +4090,7 @@ static int __pyx_pw_5mprpc_6server_14_RPCConnection_1__init__(PyObject *__pyx_v_
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 156, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 147, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -4210,7 +4101,7 @@ static int __pyx_pw_5mprpc_6server_14_RPCConnection_1__init__(PyObject *__pyx_v_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 156, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 147, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("mprpc.server._RPCConnection.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4228,7 +4119,7 @@ static int __pyx_pf_5mprpc_6server_14_RPCConnection___init__(struct __pyx_obj_5m
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "mprpc/server.pyx":157
+  /* "mprpc/server.pyx":148
  * 
  *     def __init__(self, socket):
  *         self._socket = socket             # <<<<<<<<<<<<<<
@@ -4241,7 +4132,7 @@ static int __pyx_pf_5mprpc_6server_14_RPCConnection___init__(struct __pyx_obj_5m
   __Pyx_DECREF(__pyx_v_self->_socket);
   __pyx_v_self->_socket = __pyx_v_socket;
 
-  /* "mprpc/server.pyx":156
+  /* "mprpc/server.pyx":147
  *     cdef _socket
  * 
  *     def __init__(self, socket):             # <<<<<<<<<<<<<<
@@ -4255,7 +4146,7 @@ static int __pyx_pf_5mprpc_6server_14_RPCConnection___init__(struct __pyx_obj_5m
   return __pyx_r;
 }
 
-/* "mprpc/server.pyx":159
+/* "mprpc/server.pyx":150
  *         self._socket = socket
  * 
  *     cdef recv(self, int buf_size):             # <<<<<<<<<<<<<<
@@ -4275,7 +4166,7 @@ static PyObject *__pyx_f_5mprpc_6server_14_RPCConnection_recv(struct __pyx_obj_5
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("recv", 0);
 
-  /* "mprpc/server.pyx":160
+  /* "mprpc/server.pyx":151
  * 
  *     cdef recv(self, int buf_size):
  *         return self._socket.recv(buf_size)             # <<<<<<<<<<<<<<
@@ -4283,9 +4174,9 @@ static PyObject *__pyx_f_5mprpc_6server_14_RPCConnection_recv(struct __pyx_obj_5
  *     cdef send(self, bytes msg):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_socket, __pyx_n_s_recv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_socket, __pyx_n_s_recv); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_buf_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_buf_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -4300,14 +4191,14 @@ static PyObject *__pyx_f_5mprpc_6server_14_RPCConnection_recv(struct __pyx_obj_5
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "mprpc/server.pyx":159
+  /* "mprpc/server.pyx":150
  *         self._socket = socket
  * 
  *     cdef recv(self, int buf_size):             # <<<<<<<<<<<<<<
@@ -4329,7 +4220,7 @@ static PyObject *__pyx_f_5mprpc_6server_14_RPCConnection_recv(struct __pyx_obj_5
   return __pyx_r;
 }
 
-/* "mprpc/server.pyx":162
+/* "mprpc/server.pyx":153
  *         return self._socket.recv(buf_size)
  * 
  *     cdef send(self, bytes msg):             # <<<<<<<<<<<<<<
@@ -4348,14 +4239,14 @@ static PyObject *__pyx_f_5mprpc_6server_14_RPCConnection_send(struct __pyx_obj_5
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("send", 0);
 
-  /* "mprpc/server.pyx":163
+  /* "mprpc/server.pyx":154
  * 
  *     cdef send(self, bytes msg):
  *         self._socket.sendall(msg)             # <<<<<<<<<<<<<<
  * 
  *     def __del__(self):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_socket, __pyx_n_s_sendall); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_socket, __pyx_n_s_sendall); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -4369,12 +4260,12 @@ static PyObject *__pyx_f_5mprpc_6server_14_RPCConnection_send(struct __pyx_obj_5
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_msg) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_msg);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "mprpc/server.pyx":162
+  /* "mprpc/server.pyx":153
  *         return self._socket.recv(buf_size)
  * 
  *     cdef send(self, bytes msg):             # <<<<<<<<<<<<<<
@@ -4397,7 +4288,7 @@ static PyObject *__pyx_f_5mprpc_6server_14_RPCConnection_send(struct __pyx_obj_5
   return __pyx_r;
 }
 
-/* "mprpc/server.pyx":165
+/* "mprpc/server.pyx":156
  *         self._socket.sendall(msg)
  * 
  *     def __del__(self):             # <<<<<<<<<<<<<<
@@ -4432,7 +4323,7 @@ static PyObject *__pyx_pf_5mprpc_6server_14_RPCConnection_2__del__(struct __pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__del__", 0);
 
-  /* "mprpc/server.pyx":166
+  /* "mprpc/server.pyx":157
  * 
  *     def __del__(self):
  *         try:             # <<<<<<<<<<<<<<
@@ -4448,14 +4339,14 @@ static PyObject *__pyx_pf_5mprpc_6server_14_RPCConnection_2__del__(struct __pyx_
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "mprpc/server.pyx":167
+      /* "mprpc/server.pyx":158
  *     def __del__(self):
  *         try:
  *             self._socket.close()             # <<<<<<<<<<<<<<
  *         except:
  *             pass
  */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_socket, __pyx_n_s_close); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 167, __pyx_L3_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_socket, __pyx_n_s_close); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 158, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_t_6 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -4469,12 +4360,12 @@ static PyObject *__pyx_pf_5mprpc_6server_14_RPCConnection_2__del__(struct __pyx_
       }
       __pyx_t_4 = (__pyx_t_6) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L3_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "mprpc/server.pyx":166
+      /* "mprpc/server.pyx":157
  * 
  *     def __del__(self):
  *         try:             # <<<<<<<<<<<<<<
@@ -4491,7 +4382,7 @@ static PyObject *__pyx_pf_5mprpc_6server_14_RPCConnection_2__del__(struct __pyx_
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "mprpc/server.pyx":168
+    /* "mprpc/server.pyx":159
  *         try:
  *             self._socket.close()
  *         except:             # <<<<<<<<<<<<<<
@@ -4509,7 +4400,7 @@ static PyObject *__pyx_pf_5mprpc_6server_14_RPCConnection_2__del__(struct __pyx_
     __pyx_L8_try_end:;
   }
 
-  /* "mprpc/server.pyx":165
+  /* "mprpc/server.pyx":156
  *         self._socket.sendall(msg)
  * 
  *     def __del__(self):             # <<<<<<<<<<<<<<
@@ -4918,9 +4809,9 @@ static PyObject *__pyx_pf_5mprpc_6server___pyx_unpickle_RPCServer(CYTHON_UNUSED 
   /* "(tree fragment)":4
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
- *     if __pyx_checksum not in (0x80eed58, 0xe104443, 0xb6489f1):             # <<<<<<<<<<<<<<
+ *     if __pyx_checksum not in (0xd9f24bc, 0xcd83654, 0xe9359e3):             # <<<<<<<<<<<<<<
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0x80eed58, 0xe104443, 0xb6489f1) = (_address, _methods, _packer, _tcp_no_delay, _unpack_encoding, _unpack_params))" % __pyx_checksum)
+ *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0xd9f24bc, 0xcd83654, 0xe9359e3) = (_address, _methods, _packer, _tcp_no_delay, _unpack_params))" % __pyx_checksum)
  */
   __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v___pyx_checksum); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -4931,9 +4822,9 @@ static PyObject *__pyx_pf_5mprpc_6server___pyx_unpickle_RPCServer(CYTHON_UNUSED 
 
     /* "(tree fragment)":5
  *     cdef object __pyx_result
- *     if __pyx_checksum not in (0x80eed58, 0xe104443, 0xb6489f1):
+ *     if __pyx_checksum not in (0xd9f24bc, 0xcd83654, 0xe9359e3):
  *         from pickle import PickleError as __pyx_PickleError             # <<<<<<<<<<<<<<
- *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0x80eed58, 0xe104443, 0xb6489f1) = (_address, _methods, _packer, _tcp_no_delay, _unpack_encoding, _unpack_params))" % __pyx_checksum)
+ *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0xd9f24bc, 0xcd83654, 0xe9359e3) = (_address, _methods, _packer, _tcp_no_delay, _unpack_params))" % __pyx_checksum)
  *     __pyx_result = RPCServer.__new__(__pyx_type)
  */
     __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5, __pyx_L1_error)
@@ -4952,9 +4843,9 @@ static PyObject *__pyx_pf_5mprpc_6server___pyx_unpickle_RPCServer(CYTHON_UNUSED 
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
     /* "(tree fragment)":6
- *     if __pyx_checksum not in (0x80eed58, 0xe104443, 0xb6489f1):
+ *     if __pyx_checksum not in (0xd9f24bc, 0xcd83654, 0xe9359e3):
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0x80eed58, 0xe104443, 0xb6489f1) = (_address, _methods, _packer, _tcp_no_delay, _unpack_encoding, _unpack_params))" % __pyx_checksum)             # <<<<<<<<<<<<<<
+ *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0xd9f24bc, 0xcd83654, 0xe9359e3) = (_address, _methods, _packer, _tcp_no_delay, _unpack_params))" % __pyx_checksum)             # <<<<<<<<<<<<<<
  *     __pyx_result = RPCServer.__new__(__pyx_type)
  *     if __pyx_state is not None:
  */
@@ -4987,15 +4878,15 @@ static PyObject *__pyx_pf_5mprpc_6server___pyx_unpickle_RPCServer(CYTHON_UNUSED 
     /* "(tree fragment)":4
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
- *     if __pyx_checksum not in (0x80eed58, 0xe104443, 0xb6489f1):             # <<<<<<<<<<<<<<
+ *     if __pyx_checksum not in (0xd9f24bc, 0xcd83654, 0xe9359e3):             # <<<<<<<<<<<<<<
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0x80eed58, 0xe104443, 0xb6489f1) = (_address, _methods, _packer, _tcp_no_delay, _unpack_encoding, _unpack_params))" % __pyx_checksum)
+ *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0xd9f24bc, 0xcd83654, 0xe9359e3) = (_address, _methods, _packer, _tcp_no_delay, _unpack_params))" % __pyx_checksum)
  */
   }
 
   /* "(tree fragment)":7
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0x80eed58, 0xe104443, 0xb6489f1) = (_address, _methods, _packer, _tcp_no_delay, _unpack_encoding, _unpack_params))" % __pyx_checksum)
+ *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0xd9f24bc, 0xcd83654, 0xe9359e3) = (_address, _methods, _packer, _tcp_no_delay, _unpack_params))" % __pyx_checksum)
  *     __pyx_result = RPCServer.__new__(__pyx_type)             # <<<<<<<<<<<<<<
  *     if __pyx_state is not None:
  *         __pyx_unpickle_RPCServer__set_state(<RPCServer> __pyx_result, __pyx_state)
@@ -5021,7 +4912,7 @@ static PyObject *__pyx_pf_5mprpc_6server___pyx_unpickle_RPCServer(CYTHON_UNUSED 
   __pyx_t_4 = 0;
 
   /* "(tree fragment)":8
- *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0x80eed58, 0xe104443, 0xb6489f1) = (_address, _methods, _packer, _tcp_no_delay, _unpack_encoding, _unpack_params))" % __pyx_checksum)
+ *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0xd9f24bc, 0xcd83654, 0xe9359e3) = (_address, _methods, _packer, _tcp_no_delay, _unpack_params))" % __pyx_checksum)
  *     __pyx_result = RPCServer.__new__(__pyx_type)
  *     if __pyx_state is not None:             # <<<<<<<<<<<<<<
  *         __pyx_unpickle_RPCServer__set_state(<RPCServer> __pyx_result, __pyx_state)
@@ -5044,7 +4935,7 @@ static PyObject *__pyx_pf_5mprpc_6server___pyx_unpickle_RPCServer(CYTHON_UNUSED 
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
     /* "(tree fragment)":8
- *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0x80eed58, 0xe104443, 0xb6489f1) = (_address, _methods, _packer, _tcp_no_delay, _unpack_encoding, _unpack_params))" % __pyx_checksum)
+ *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0xd9f24bc, 0xcd83654, 0xe9359e3) = (_address, _methods, _packer, _tcp_no_delay, _unpack_params))" % __pyx_checksum)
  *     __pyx_result = RPCServer.__new__(__pyx_type)
  *     if __pyx_state is not None:             # <<<<<<<<<<<<<<
  *         __pyx_unpickle_RPCServer__set_state(<RPCServer> __pyx_result, __pyx_state)
@@ -5057,7 +4948,7 @@ static PyObject *__pyx_pf_5mprpc_6server___pyx_unpickle_RPCServer(CYTHON_UNUSED 
  *         __pyx_unpickle_RPCServer__set_state(<RPCServer> __pyx_result, __pyx_state)
  *     return __pyx_result             # <<<<<<<<<<<<<<
  * cdef __pyx_unpickle_RPCServer__set_state(RPCServer __pyx_result, tuple __pyx_state):
- *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_encoding = __pyx_state[4]; __pyx_result._unpack_params = __pyx_state[5]
+ *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_params = __pyx_state[4]
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v___pyx_result);
@@ -5090,8 +4981,8 @@ static PyObject *__pyx_pf_5mprpc_6server___pyx_unpickle_RPCServer(CYTHON_UNUSED 
  *         __pyx_unpickle_RPCServer__set_state(<RPCServer> __pyx_result, __pyx_state)
  *     return __pyx_result
  * cdef __pyx_unpickle_RPCServer__set_state(RPCServer __pyx_result, tuple __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_encoding = __pyx_state[4]; __pyx_result._unpack_params = __pyx_state[5]
- *     if len(__pyx_state) > 6 and hasattr(__pyx_result, '__dict__'):
+ *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_params = __pyx_state[4]
+ *     if len(__pyx_state) > 5 and hasattr(__pyx_result, '__dict__'):
  */
 
 static PyObject *__pyx_f_5mprpc_6server___pyx_unpickle_RPCServer__set_state(struct __pyx_obj_5mprpc_6server_RPCServer *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
@@ -5113,9 +5004,9 @@ static PyObject *__pyx_f_5mprpc_6server___pyx_unpickle_RPCServer__set_state(stru
   /* "(tree fragment)":12
  *     return __pyx_result
  * cdef __pyx_unpickle_RPCServer__set_state(RPCServer __pyx_result, tuple __pyx_state):
- *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_encoding = __pyx_state[4]; __pyx_result._unpack_params = __pyx_state[5]             # <<<<<<<<<<<<<<
- *     if len(__pyx_state) > 6 and hasattr(__pyx_result, '__dict__'):
- *         __pyx_result.__dict__.update(__pyx_state[6])
+ *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_params = __pyx_state[4]             # <<<<<<<<<<<<<<
+ *     if len(__pyx_state) > 5 and hasattr(__pyx_result, '__dict__'):
+ *         __pyx_result.__dict__.update(__pyx_state[5])
  */
   if (unlikely(__pyx_v___pyx_state == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
@@ -5168,17 +5059,6 @@ static PyObject *__pyx_f_5mprpc_6server___pyx_unpickle_RPCServer__set_state(stru
   __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
-  __Pyx_GOTREF(__pyx_v___pyx_result->_unpack_encoding);
-  __Pyx_DECREF(__pyx_v___pyx_result->_unpack_encoding);
-  __pyx_v___pyx_result->_unpack_encoding = __pyx_t_1;
-  __pyx_t_1 = 0;
-  if (unlikely(__pyx_v___pyx_state == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(1, 12, __pyx_L1_error)
-  }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 12, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->_unpack_params);
   __Pyx_DECREF(__pyx_v___pyx_result->_unpack_params);
   __pyx_v___pyx_result->_unpack_params = __pyx_t_1;
@@ -5186,16 +5066,16 @@ static PyObject *__pyx_f_5mprpc_6server___pyx_unpickle_RPCServer__set_state(stru
 
   /* "(tree fragment)":13
  * cdef __pyx_unpickle_RPCServer__set_state(RPCServer __pyx_result, tuple __pyx_state):
- *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_encoding = __pyx_state[4]; __pyx_result._unpack_params = __pyx_state[5]
- *     if len(__pyx_state) > 6 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
- *         __pyx_result.__dict__.update(__pyx_state[6])
+ *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_params = __pyx_state[4]
+ *     if len(__pyx_state) > 5 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
+ *         __pyx_result.__dict__.update(__pyx_state[5])
  */
   if (unlikely(__pyx_v___pyx_state == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
     __PYX_ERR(1, 13, __pyx_L1_error)
   }
   __pyx_t_3 = PyTuple_GET_SIZE(__pyx_v___pyx_state); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(1, 13, __pyx_L1_error)
-  __pyx_t_4 = ((__pyx_t_3 > 6) != 0);
+  __pyx_t_4 = ((__pyx_t_3 > 5) != 0);
   if (__pyx_t_4) {
   } else {
     __pyx_t_2 = __pyx_t_4;
@@ -5208,9 +5088,9 @@ static PyObject *__pyx_f_5mprpc_6server___pyx_unpickle_RPCServer__set_state(stru
   if (__pyx_t_2) {
 
     /* "(tree fragment)":14
- *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_encoding = __pyx_state[4]; __pyx_result._unpack_params = __pyx_state[5]
- *     if len(__pyx_state) > 6 and hasattr(__pyx_result, '__dict__'):
- *         __pyx_result.__dict__.update(__pyx_state[6])             # <<<<<<<<<<<<<<
+ *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_params = __pyx_state[4]
+ *     if len(__pyx_state) > 5 and hasattr(__pyx_result, '__dict__'):
+ *         __pyx_result.__dict__.update(__pyx_state[5])             # <<<<<<<<<<<<<<
  */
     __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v___pyx_result), __pyx_n_s_dict); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 14, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
@@ -5221,7 +5101,7 @@ static PyObject *__pyx_f_5mprpc_6server___pyx_unpickle_RPCServer__set_state(stru
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
       __PYX_ERR(1, 14, __pyx_L1_error)
     }
-    __pyx_t_6 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 6, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 14, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 14, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_8 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_7))) {
@@ -5243,9 +5123,9 @@ static PyObject *__pyx_f_5mprpc_6server___pyx_unpickle_RPCServer__set_state(stru
 
     /* "(tree fragment)":13
  * cdef __pyx_unpickle_RPCServer__set_state(RPCServer __pyx_result, tuple __pyx_state):
- *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_encoding = __pyx_state[4]; __pyx_result._unpack_params = __pyx_state[5]
- *     if len(__pyx_state) > 6 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
- *         __pyx_result.__dict__.update(__pyx_state[6])
+ *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_params = __pyx_state[4]
+ *     if len(__pyx_state) > 5 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
+ *         __pyx_result.__dict__.update(__pyx_state[5])
  */
   }
 
@@ -5253,8 +5133,8 @@ static PyObject *__pyx_f_5mprpc_6server___pyx_unpickle_RPCServer__set_state(stru
  *         __pyx_unpickle_RPCServer__set_state(<RPCServer> __pyx_result, __pyx_state)
  *     return __pyx_result
  * cdef __pyx_unpickle_RPCServer__set_state(RPCServer __pyx_result, tuple __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_encoding = __pyx_state[4]; __pyx_result._unpack_params = __pyx_state[5]
- *     if len(__pyx_state) > 6 and hasattr(__pyx_result, '__dict__'):
+ *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_params = __pyx_state[4]
+ *     if len(__pyx_state) > 5 and hasattr(__pyx_result, '__dict__'):
  */
 
   /* function exit code */
@@ -5687,7 +5567,6 @@ static PyObject *__pyx_tp_new_5mprpc_6server_RPCServer(PyTypeObject *t, CYTHON_U
   p = ((struct __pyx_obj_5mprpc_6server_RPCServer *)o);
   p->__pyx_vtab = __pyx_vtabptr_5mprpc_6server_RPCServer;
   p->_packer = Py_None; Py_INCREF(Py_None);
-  p->_unpack_encoding = Py_None; Py_INCREF(Py_None);
   p->_unpack_params = Py_None; Py_INCREF(Py_None);
   p->_tcp_no_delay = Py_None; Py_INCREF(Py_None);
   p->_methods = Py_None; Py_INCREF(Py_None);
@@ -5704,7 +5583,6 @@ static void __pyx_tp_dealloc_5mprpc_6server_RPCServer(PyObject *o) {
   #endif
   PyObject_GC_UnTrack(o);
   Py_CLEAR(p->_packer);
-  Py_CLEAR(p->_unpack_encoding);
   Py_CLEAR(p->_unpack_params);
   Py_CLEAR(p->_tcp_no_delay);
   Py_CLEAR(p->_methods);
@@ -5717,9 +5595,6 @@ static int __pyx_tp_traverse_5mprpc_6server_RPCServer(PyObject *o, visitproc v, 
   struct __pyx_obj_5mprpc_6server_RPCServer *p = (struct __pyx_obj_5mprpc_6server_RPCServer *)o;
   if (p->_packer) {
     e = (*v)(p->_packer, a); if (e) return e;
-  }
-  if (p->_unpack_encoding) {
-    e = (*v)(p->_unpack_encoding, a); if (e) return e;
   }
   if (p->_unpack_params) {
     e = (*v)(p->_unpack_params, a); if (e) return e;
@@ -5741,9 +5616,6 @@ static int __pyx_tp_clear_5mprpc_6server_RPCServer(PyObject *o) {
   struct __pyx_obj_5mprpc_6server_RPCServer *p = (struct __pyx_obj_5mprpc_6server_RPCServer *)o;
   tmp = ((PyObject*)p->_packer);
   p->_packer = Py_None; Py_INCREF(Py_None);
-  Py_XDECREF(tmp);
-  tmp = ((PyObject*)p->_unpack_encoding);
-  p->_unpack_encoding = Py_None; Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   tmp = ((PyObject*)p->_unpack_params);
   p->_unpack_params = Py_None; Py_INCREF(Py_None);
@@ -5812,7 +5684,7 @@ static PyTypeObject __pyx_type_5mprpc_6server_RPCServer = {
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
-  "RPC server.\n\n    This class is assumed to be used with gevent StreamServer.\n\n    :param str pack_encoding: (optional) Character encoding used to pack data\n        using Messagepack.\n    :param str unpack_encoding: (optional) Character encoding used to unpack\n        data using Messagepack\n    :param dict pack_params: (optional) Parameters to pass to Messagepack Packer\n    :param dict unpack_params: (optional) Parameters to pass to Messagepack\n        Unpacker\n\n    Usage:\n        >>> from gevent.server import StreamServer\n        >>> import mprpc\n        >>>\n        >>> class SumServer(mprpc.RPCServer):\n        ...     def sum(self, x, y):\n        ...         return x + y\n        ...\n        >>>\n        >>> server = StreamServer(('127.0.0.1', 6000), SumServer())\n        >>> server.serve_forever()\n    ", /*tp_doc*/
+  "RPC server.\n\n    This class is assumed to be used with gevent StreamServer.\n\n    :param dict pack_params: (optional) Parameters to pass to Messagepack Packer\n    :param dict unpack_params: (optional) Parameters to pass to Messagepack\n        Unpacker\n\n    Usage:\n        >>> from gevent.server import StreamServer\n        >>> import mprpc\n        >>>\n        >>> class SumServer(mprpc.RPCServer):\n        ...     def sum(self, x, y):\n        ...         return x + y\n        ...\n        >>>\n        >>> server = StreamServer(('127.0.0.1', 6000), SumServer())\n        >>> server.serve_forever()\n    ", /*tp_doc*/
   __pyx_tp_traverse_5mprpc_6server_RPCServer, /*tp_traverse*/
   __pyx_tp_clear_5mprpc_6server_RPCServer, /*tp_clear*/
   0, /*tp_richcompare*/
@@ -6051,7 +5923,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_close, __pyx_k_close, sizeof(__pyx_k_close), 0, 0, 1, 1},
   {&__pyx_n_s_dict, __pyx_k_dict, sizeof(__pyx_k_dict), 0, 0, 1, 1},
-  {&__pyx_n_s_encoding, __pyx_k_encoding, sizeof(__pyx_k_encoding), 0, 0, 1, 1},
   {&__pyx_n_s_feed, __pyx_k_feed, sizeof(__pyx_k_feed), 0, 0, 1, 1},
   {&__pyx_n_s_format_exc, __pyx_k_format_exc, sizeof(__pyx_k_format_exc), 0, 0, 1, 1},
   {&__pyx_n_s_get, __pyx_k_get, sizeof(__pyx_k_get), 0, 0, 1, 1},
@@ -6060,7 +5931,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_gevent_local, __pyx_k_gevent_local, sizeof(__pyx_k_gevent_local), 0, 0, 1, 1},
   {&__pyx_n_s_gevent_socket, __pyx_k_gevent_socket, sizeof(__pyx_k_gevent_socket), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
-  {&__pyx_n_s_items, __pyx_k_items, sizeof(__pyx_k_items), 0, 0, 1, 1},
   {&__pyx_n_s_local, __pyx_k_local, sizeof(__pyx_k_local), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_mprpc_constants, __pyx_k_mprpc_constants, sizeof(__pyx_k_mprpc_constants), 0, 0, 1, 1},
@@ -6070,7 +5940,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_new, __pyx_k_new, sizeof(__pyx_k_new), 0, 0, 1, 1},
   {&__pyx_n_s_pack, __pyx_k_pack, sizeof(__pyx_k_pack), 0, 0, 1, 1},
-  {&__pyx_n_u_pack_encoding, __pyx_k_pack_encoding, sizeof(__pyx_k_pack_encoding), 0, 1, 0, 1},
   {&__pyx_n_u_pack_params, __pyx_k_pack_params, sizeof(__pyx_k_pack_params), 0, 1, 0, 1},
   {&__pyx_n_s_pickle, __pyx_k_pickle, sizeof(__pyx_k_pickle), 0, 0, 1, 1},
   {&__pyx_n_s_pop, __pyx_k_pop, sizeof(__pyx_k_pop), 0, 0, 1, 1},
@@ -6098,16 +5967,14 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_u_tcp_no_delay, __pyx_k_tcp_no_delay, sizeof(__pyx_k_tcp_no_delay), 0, 1, 0, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_traceback, __pyx_k_traceback, sizeof(__pyx_k_traceback), 0, 0, 1, 1},
-  {&__pyx_n_u_unpack_encoding, __pyx_k_unpack_encoding, sizeof(__pyx_k_unpack_encoding), 0, 1, 0, 1},
   {&__pyx_n_u_unpack_params, __pyx_k_unpack_params, sizeof(__pyx_k_unpack_params), 0, 1, 0, 1},
   {&__pyx_n_s_update, __pyx_k_update, sizeof(__pyx_k_update), 0, 0, 1, 1},
   {&__pyx_n_s_use_bin_type, __pyx_k_use_bin_type, sizeof(__pyx_k_use_bin_type), 0, 0, 1, 1},
   {&__pyx_n_s_use_list, __pyx_k_use_list, sizeof(__pyx_k_use_list), 0, 0, 1, 1},
-  {&__pyx_kp_u_utf_8, __pyx_k_utf_8, sizeof(__pyx_k_utf_8), 0, 1, 0, 0},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_StopIteration = __Pyx_GetBuiltinName(__pyx_n_s_StopIteration); if (!__pyx_builtin_StopIteration) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_builtin_StopIteration = __Pyx_GetBuiltinName(__pyx_n_s_StopIteration); if (!__pyx_builtin_StopIteration) __PYX_ERR(0, 89, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -6120,11 +5987,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "(tree fragment)":4
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
- *     if __pyx_checksum not in (0x80eed58, 0xe104443, 0xb6489f1):             # <<<<<<<<<<<<<<
+ *     if __pyx_checksum not in (0xd9f24bc, 0xcd83654, 0xe9359e3):             # <<<<<<<<<<<<<<
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0x80eed58, 0xe104443, 0xb6489f1) = (_address, _methods, _packer, _tcp_no_delay, _unpack_encoding, _unpack_params))" % __pyx_checksum)
+ *         raise __pyx_PickleError("Incompatible checksums (0x%x vs (0xd9f24bc, 0xcd83654, 0xe9359e3) = (_address, _methods, _packer, _tcp_no_delay, _unpack_params))" % __pyx_checksum)
  */
-  __pyx_tuple__3 = PyTuple_Pack(3, __pyx_int_135195992, __pyx_int_235947075, __pyx_int_191138289); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(3, __pyx_int_228533436, __pyx_int_215496276, __pyx_int_244537827); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
   __pyx_tuple__4 = PyTuple_Pack(3, __pyx_int_203939021, __pyx_int_251531926, __pyx_int_263644914); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(1, 4, __pyx_L1_error)
@@ -6155,10 +6022,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   __pyx_umethod_PyDict_Type_pop.type = (PyObject*)&PyDict_Type;
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_int_135195992 = PyInt_FromLong(135195992L); if (unlikely(!__pyx_int_135195992)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_int_191138289 = PyInt_FromLong(191138289L); if (unlikely(!__pyx_int_191138289)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_203939021 = PyInt_FromLong(203939021L); if (unlikely(!__pyx_int_203939021)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_int_235947075 = PyInt_FromLong(235947075L); if (unlikely(!__pyx_int_235947075)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_215496276 = PyInt_FromLong(215496276L); if (unlikely(!__pyx_int_215496276)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_228533436 = PyInt_FromLong(228533436L); if (unlikely(!__pyx_int_228533436)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_244537827 = PyInt_FromLong(244537827L); if (unlikely(!__pyx_int_244537827)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_251531926 = PyInt_FromLong(251531926L); if (unlikely(!__pyx_int_251531926)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_263644914 = PyInt_FromLong(263644914L); if (unlikely(!__pyx_int_263644914)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
@@ -6223,16 +6090,16 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtabptr_5mprpc_6server__RPCConnection = &__pyx_vtable_5mprpc_6server__RPCConnection;
   __pyx_vtable_5mprpc_6server__RPCConnection.recv = (PyObject *(*)(struct __pyx_obj_5mprpc_6server__RPCConnection *, int))__pyx_f_5mprpc_6server_14_RPCConnection_recv;
   __pyx_vtable_5mprpc_6server__RPCConnection.send = (PyObject *(*)(struct __pyx_obj_5mprpc_6server__RPCConnection *, PyObject *))__pyx_f_5mprpc_6server_14_RPCConnection_send;
-  if (PyType_Ready(&__pyx_type_5mprpc_6server__RPCConnection) < 0) __PYX_ERR(0, 153, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5mprpc_6server__RPCConnection) < 0) __PYX_ERR(0, 144, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5mprpc_6server__RPCConnection.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_5mprpc_6server__RPCConnection.tp_dictoffset && __pyx_type_5mprpc_6server__RPCConnection.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_5mprpc_6server__RPCConnection.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_5mprpc_6server__RPCConnection.tp_dict, __pyx_vtabptr_5mprpc_6server__RPCConnection) < 0) __PYX_ERR(0, 153, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_RPCConnection, (PyObject *)&__pyx_type_5mprpc_6server__RPCConnection) < 0) __PYX_ERR(0, 153, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5mprpc_6server__RPCConnection) < 0) __PYX_ERR(0, 153, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5mprpc_6server__RPCConnection.tp_dict, __pyx_vtabptr_5mprpc_6server__RPCConnection) < 0) __PYX_ERR(0, 144, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_RPCConnection, (PyObject *)&__pyx_type_5mprpc_6server__RPCConnection) < 0) __PYX_ERR(0, 144, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5mprpc_6server__RPCConnection) < 0) __PYX_ERR(0, 144, __pyx_L1_error)
   __pyx_ptype_5mprpc_6server__RPCConnection = &__pyx_type_5mprpc_6server__RPCConnection;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -6600,8 +6467,8 @@ if (!__Pyx_RefNanny) {
  *         __pyx_unpickle_RPCServer__set_state(<RPCServer> __pyx_result, __pyx_state)
  *     return __pyx_result
  * cdef __pyx_unpickle_RPCServer__set_state(RPCServer __pyx_result, tuple __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_encoding = __pyx_state[4]; __pyx_result._unpack_params = __pyx_state[5]
- *     if len(__pyx_state) > 6 and hasattr(__pyx_result, '__dict__'):
+ *     __pyx_result._address = __pyx_state[0]; __pyx_result._methods = __pyx_state[1]; __pyx_result._packer = __pyx_state[2]; __pyx_result._tcp_no_delay = __pyx_state[3]; __pyx_result._unpack_params = __pyx_state[4]
+ *     if len(__pyx_state) > 5 and hasattr(__pyx_result, '__dict__'):
  */
   __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_5mprpc_6server_3__pyx_unpickle__RPCConnection, NULL, __pyx_n_s_mprpc_server); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -6952,41 +6819,6 @@ static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
     return __Pyx_GetBuiltinName(name);
 }
 
-/* IterFinish */
-static CYTHON_INLINE int __Pyx_IterFinish(void) {
-#if CYTHON_FAST_THREAD_STATE
-    PyThreadState *tstate = __Pyx_PyThreadState_Current;
-    PyObject* exc_type = tstate->curexc_type;
-    if (unlikely(exc_type)) {
-        if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) {
-            PyObject *exc_value, *exc_tb;
-            exc_value = tstate->curexc_value;
-            exc_tb = tstate->curexc_traceback;
-            tstate->curexc_type = 0;
-            tstate->curexc_value = 0;
-            tstate->curexc_traceback = 0;
-            Py_DECREF(exc_type);
-            Py_XDECREF(exc_value);
-            Py_XDECREF(exc_tb);
-            return 0;
-        } else {
-            return -1;
-        }
-    }
-    return 0;
-#else
-    if (unlikely(PyErr_Occurred())) {
-        if (likely(PyErr_ExceptionMatches(PyExc_StopIteration))) {
-            PyErr_Clear();
-            return 0;
-        } else {
-            return -1;
-        }
-    }
-    return 0;
-#endif
-}
-
 /* PyFunctionFastCall */
 #if CYTHON_FAST_PYCALL
 static PyObject* __Pyx_PyFunction_FastCallNoKw(PyCodeObject *co, PyObject **args, Py_ssize_t na,
@@ -7211,378 +7043,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObjec
 }
 #endif
 
-/* PyObjectGetMethod */
-static int __Pyx_PyObject_GetMethod(PyObject *obj, PyObject *name, PyObject **method) {
-    PyObject *attr;
-#if CYTHON_UNPACK_METHODS && CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_PYTYPE_LOOKUP
-    PyTypeObject *tp = Py_TYPE(obj);
-    PyObject *descr;
-    descrgetfunc f = NULL;
-    PyObject **dictptr, *dict;
-    int meth_found = 0;
-    assert (*method == NULL);
-    if (unlikely(tp->tp_getattro != PyObject_GenericGetAttr)) {
-        attr = __Pyx_PyObject_GetAttrStr(obj, name);
-        goto try_unpack;
-    }
-    if (unlikely(tp->tp_dict == NULL) && unlikely(PyType_Ready(tp) < 0)) {
-        return 0;
-    }
-    descr = _PyType_Lookup(tp, name);
-    if (likely(descr != NULL)) {
-        Py_INCREF(descr);
-#if PY_MAJOR_VERSION >= 3
-        #ifdef __Pyx_CyFunction_USED
-        if (likely(PyFunction_Check(descr) || (Py_TYPE(descr) == &PyMethodDescr_Type) || __Pyx_CyFunction_Check(descr)))
-        #else
-        if (likely(PyFunction_Check(descr) || (Py_TYPE(descr) == &PyMethodDescr_Type)))
-        #endif
-#else
-        #ifdef __Pyx_CyFunction_USED
-        if (likely(PyFunction_Check(descr) || __Pyx_CyFunction_Check(descr)))
-        #else
-        if (likely(PyFunction_Check(descr)))
-        #endif
-#endif
-        {
-            meth_found = 1;
-        } else {
-            f = Py_TYPE(descr)->tp_descr_get;
-            if (f != NULL && PyDescr_IsData(descr)) {
-                attr = f(descr, obj, (PyObject *)Py_TYPE(obj));
-                Py_DECREF(descr);
-                goto try_unpack;
-            }
-        }
-    }
-    dictptr = _PyObject_GetDictPtr(obj);
-    if (dictptr != NULL && (dict = *dictptr) != NULL) {
-        Py_INCREF(dict);
-        attr = __Pyx_PyDict_GetItemStr(dict, name);
-        if (attr != NULL) {
-            Py_INCREF(attr);
-            Py_DECREF(dict);
-            Py_XDECREF(descr);
-            goto try_unpack;
-        }
-        Py_DECREF(dict);
-    }
-    if (meth_found) {
-        *method = descr;
-        return 1;
-    }
-    if (f != NULL) {
-        attr = f(descr, obj, (PyObject *)Py_TYPE(obj));
-        Py_DECREF(descr);
-        goto try_unpack;
-    }
-    if (descr != NULL) {
-        *method = descr;
-        return 0;
-    }
-    PyErr_Format(PyExc_AttributeError,
-#if PY_MAJOR_VERSION >= 3
-                 "'%.50s' object has no attribute '%U'",
-                 tp->tp_name, name);
-#else
-                 "'%.50s' object has no attribute '%.400s'",
-                 tp->tp_name, PyString_AS_STRING(name));
-#endif
-    return 0;
-#else
-    attr = __Pyx_PyObject_GetAttrStr(obj, name);
-    goto try_unpack;
-#endif
-try_unpack:
-#if CYTHON_UNPACK_METHODS
-    if (likely(attr) && PyMethod_Check(attr) && likely(PyMethod_GET_SELF(attr) == obj)) {
-        PyObject *function = PyMethod_GET_FUNCTION(attr);
-        Py_INCREF(function);
-        Py_DECREF(attr);
-        *method = function;
-        return 1;
-    }
-#endif
-    *method = attr;
-    return 0;
-}
-
-/* PyObjectCallMethod0 */
-static PyObject* __Pyx_PyObject_CallMethod0(PyObject* obj, PyObject* method_name) {
-    PyObject *method = NULL, *result = NULL;
-    int is_method = __Pyx_PyObject_GetMethod(obj, method_name, &method);
-    if (likely(is_method)) {
-        result = __Pyx_PyObject_CallOneArg(method, obj);
-        Py_DECREF(method);
-        return result;
-    }
-    if (unlikely(!method)) goto bad;
-    result = __Pyx_PyObject_CallNoArg(method);
-    Py_DECREF(method);
-bad:
-    return result;
-}
-
-/* RaiseNeedMoreValuesToUnpack */
-static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index) {
-    PyErr_Format(PyExc_ValueError,
-                 "need more than %" CYTHON_FORMAT_SSIZE_T "d value%.1s to unpack",
-                 index, (index == 1) ? "" : "s");
-}
-
-/* RaiseTooManyValuesToUnpack */
-static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected) {
-    PyErr_Format(PyExc_ValueError,
-                 "too many values to unpack (expected %" CYTHON_FORMAT_SSIZE_T "d)", expected);
-}
-
-/* UnpackItemEndCheck */
-static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected) {
-    if (unlikely(retval)) {
-        Py_DECREF(retval);
-        __Pyx_RaiseTooManyValuesError(expected);
-        return -1;
-    }
-    return __Pyx_IterFinish();
-}
-
-/* RaiseNoneIterError */
-static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-}
-
-/* UnpackTupleError */
-static void __Pyx_UnpackTupleError(PyObject *t, Py_ssize_t index) {
-    if (t == Py_None) {
-      __Pyx_RaiseNoneNotIterableError();
-    } else if (PyTuple_GET_SIZE(t) < index) {
-      __Pyx_RaiseNeedMoreValuesError(PyTuple_GET_SIZE(t));
-    } else {
-      __Pyx_RaiseTooManyValuesError(index);
-    }
-}
-
-/* UnpackTuple2 */
-static CYTHON_INLINE int __Pyx_unpack_tuple2_exact(
-        PyObject* tuple, PyObject** pvalue1, PyObject** pvalue2, int decref_tuple) {
-    PyObject *value1 = NULL, *value2 = NULL;
-#if CYTHON_COMPILING_IN_PYPY
-    value1 = PySequence_ITEM(tuple, 0);  if (unlikely(!value1)) goto bad;
-    value2 = PySequence_ITEM(tuple, 1);  if (unlikely(!value2)) goto bad;
-#else
-    value1 = PyTuple_GET_ITEM(tuple, 0);  Py_INCREF(value1);
-    value2 = PyTuple_GET_ITEM(tuple, 1);  Py_INCREF(value2);
-#endif
-    if (decref_tuple) {
-        Py_DECREF(tuple);
-    }
-    *pvalue1 = value1;
-    *pvalue2 = value2;
-    return 0;
-#if CYTHON_COMPILING_IN_PYPY
-bad:
-    Py_XDECREF(value1);
-    Py_XDECREF(value2);
-    if (decref_tuple) { Py_XDECREF(tuple); }
-    return -1;
-#endif
-}
-static int __Pyx_unpack_tuple2_generic(PyObject* tuple, PyObject** pvalue1, PyObject** pvalue2,
-                                       int has_known_size, int decref_tuple) {
-    Py_ssize_t index;
-    PyObject *value1 = NULL, *value2 = NULL, *iter = NULL;
-    iternextfunc iternext;
-    iter = PyObject_GetIter(tuple);
-    if (unlikely(!iter)) goto bad;
-    if (decref_tuple) { Py_DECREF(tuple); tuple = NULL; }
-    iternext = Py_TYPE(iter)->tp_iternext;
-    value1 = iternext(iter); if (unlikely(!value1)) { index = 0; goto unpacking_failed; }
-    value2 = iternext(iter); if (unlikely(!value2)) { index = 1; goto unpacking_failed; }
-    if (!has_known_size && unlikely(__Pyx_IternextUnpackEndCheck(iternext(iter), 2))) goto bad;
-    Py_DECREF(iter);
-    *pvalue1 = value1;
-    *pvalue2 = value2;
-    return 0;
-unpacking_failed:
-    if (!has_known_size && __Pyx_IterFinish() == 0)
-        __Pyx_RaiseNeedMoreValuesError(index);
-bad:
-    Py_XDECREF(iter);
-    Py_XDECREF(value1);
-    Py_XDECREF(value2);
-    if (decref_tuple) { Py_XDECREF(tuple); }
-    return -1;
-}
-
-/* dict_iter */
-static CYTHON_INLINE PyObject* __Pyx_dict_iterator(PyObject* iterable, int is_dict, PyObject* method_name,
-                                                   Py_ssize_t* p_orig_length, int* p_source_is_dict) {
-    is_dict = is_dict || likely(PyDict_CheckExact(iterable));
-    *p_source_is_dict = is_dict;
-    if (is_dict) {
-#if !CYTHON_COMPILING_IN_PYPY
-        *p_orig_length = PyDict_Size(iterable);
-        Py_INCREF(iterable);
-        return iterable;
-#elif PY_MAJOR_VERSION >= 3
-        static PyObject *py_items = NULL, *py_keys = NULL, *py_values = NULL;
-        PyObject **pp = NULL;
-        if (method_name) {
-            const char *name = PyUnicode_AsUTF8(method_name);
-            if (strcmp(name, "iteritems") == 0) pp = &py_items;
-            else if (strcmp(name, "iterkeys") == 0) pp = &py_keys;
-            else if (strcmp(name, "itervalues") == 0) pp = &py_values;
-            if (pp) {
-                if (!*pp) {
-                    *pp = PyUnicode_FromString(name + 4);
-                    if (!*pp)
-                        return NULL;
-                }
-                method_name = *pp;
-            }
-        }
-#endif
-    }
-    *p_orig_length = 0;
-    if (method_name) {
-        PyObject* iter;
-        iterable = __Pyx_PyObject_CallMethod0(iterable, method_name);
-        if (!iterable)
-            return NULL;
-#if !CYTHON_COMPILING_IN_PYPY
-        if (PyTuple_CheckExact(iterable) || PyList_CheckExact(iterable))
-            return iterable;
-#endif
-        iter = PyObject_GetIter(iterable);
-        Py_DECREF(iterable);
-        return iter;
-    }
-    return PyObject_GetIter(iterable);
-}
-static CYTHON_INLINE int __Pyx_dict_iter_next(
-        PyObject* iter_obj, CYTHON_NCP_UNUSED Py_ssize_t orig_length, CYTHON_NCP_UNUSED Py_ssize_t* ppos,
-        PyObject** pkey, PyObject** pvalue, PyObject** pitem, int source_is_dict) {
-    PyObject* next_item;
-#if !CYTHON_COMPILING_IN_PYPY
-    if (source_is_dict) {
-        PyObject *key, *value;
-        if (unlikely(orig_length != PyDict_Size(iter_obj))) {
-            PyErr_SetString(PyExc_RuntimeError, "dictionary changed size during iteration");
-            return -1;
-        }
-        if (unlikely(!PyDict_Next(iter_obj, ppos, &key, &value))) {
-            return 0;
-        }
-        if (pitem) {
-            PyObject* tuple = PyTuple_New(2);
-            if (unlikely(!tuple)) {
-                return -1;
-            }
-            Py_INCREF(key);
-            Py_INCREF(value);
-            PyTuple_SET_ITEM(tuple, 0, key);
-            PyTuple_SET_ITEM(tuple, 1, value);
-            *pitem = tuple;
-        } else {
-            if (pkey) {
-                Py_INCREF(key);
-                *pkey = key;
-            }
-            if (pvalue) {
-                Py_INCREF(value);
-                *pvalue = value;
-            }
-        }
-        return 1;
-    } else if (PyTuple_CheckExact(iter_obj)) {
-        Py_ssize_t pos = *ppos;
-        if (unlikely(pos >= PyTuple_GET_SIZE(iter_obj))) return 0;
-        *ppos = pos + 1;
-        next_item = PyTuple_GET_ITEM(iter_obj, pos);
-        Py_INCREF(next_item);
-    } else if (PyList_CheckExact(iter_obj)) {
-        Py_ssize_t pos = *ppos;
-        if (unlikely(pos >= PyList_GET_SIZE(iter_obj))) return 0;
-        *ppos = pos + 1;
-        next_item = PyList_GET_ITEM(iter_obj, pos);
-        Py_INCREF(next_item);
-    } else
-#endif
-    {
-        next_item = PyIter_Next(iter_obj);
-        if (unlikely(!next_item)) {
-            return __Pyx_IterFinish();
-        }
-    }
-    if (pitem) {
-        *pitem = next_item;
-    } else if (pkey && pvalue) {
-        if (__Pyx_unpack_tuple2(next_item, pkey, pvalue, source_is_dict, source_is_dict, 1))
-            return -1;
-    } else if (pkey) {
-        *pkey = next_item;
-    } else {
-        *pvalue = next_item;
-    }
-    return 1;
-}
-
-/* RaiseDoubleKeywords */
-static void __Pyx_RaiseDoubleKeywordsError(
-    const char* func_name,
-    PyObject* kw_name)
-{
-    PyErr_Format(PyExc_TypeError,
-        #if PY_MAJOR_VERSION >= 3
-        "%s() got multiple values for keyword argument '%U'", func_name, kw_name);
-        #else
-        "%s() got multiple values for keyword argument '%s'", func_name,
-        PyString_AsString(kw_name));
-        #endif
-}
-
-/* MergeKeywords */
-static int __Pyx_MergeKeywords(PyObject *kwdict, PyObject *source_mapping) {
-    PyObject *iter, *key = NULL, *value = NULL;
-    int source_is_dict, result;
-    Py_ssize_t orig_length, ppos = 0;
-    iter = __Pyx_dict_iterator(source_mapping, 0, __pyx_n_s_items, &orig_length, &source_is_dict);
-    if (unlikely(!iter)) {
-        PyObject *args;
-        if (!PyErr_ExceptionMatches(PyExc_AttributeError)) goto bad;
-        PyErr_Clear();
-        args = PyTuple_Pack(1, source_mapping);
-        if (likely(args)) {
-            PyObject *fallback = PyObject_Call((PyObject*)&PyDict_Type, args, NULL);
-            Py_DECREF(args);
-            if (likely(fallback)) {
-                iter = __Pyx_dict_iterator(fallback, 1, __pyx_n_s_items, &orig_length, &source_is_dict);
-                Py_DECREF(fallback);
-            }
-        }
-        if (unlikely(!iter)) goto bad;
-    }
-    while (1) {
-        result = __Pyx_dict_iter_next(iter, orig_length, &ppos, &key, &value, NULL, source_is_dict);
-        if (unlikely(result < 0)) goto bad;
-        if (!result) break;
-        if (unlikely(PyDict_Contains(kwdict, key))) {
-            __Pyx_RaiseDoubleKeywordsError("function", key);
-            result = -1;
-        } else {
-            result = PyDict_SetItem(kwdict, key, value);
-        }
-        Py_DECREF(key);
-        Py_DECREF(value);
-        if (unlikely(result < 0)) goto bad;
-    }
-    Py_XDECREF(iter);
-    return 0;
-bad:
-    Py_XDECREF(iter);
-    return -1;
-}
-
 /* PyObjectSetAttrStr */
 #if CYTHON_USE_TYPE_SLOTS
 static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value) {
@@ -7737,6 +7197,20 @@ static void __Pyx_RaiseArgtupleInvalid(
                  "%.200s() takes %.8s %" CYTHON_FORMAT_SSIZE_T "d positional argument%.1s (%" CYTHON_FORMAT_SSIZE_T "d given)",
                  func_name, more_or_less, num_expected,
                  (num_expected == 1) ? "" : "s", num_found);
+}
+
+/* RaiseDoubleKeywords */
+static void __Pyx_RaiseDoubleKeywordsError(
+    const char* func_name,
+    PyObject* kw_name)
+{
+    PyErr_Format(PyExc_TypeError,
+        #if PY_MAJOR_VERSION >= 3
+        "%s() got multiple values for keyword argument '%U'", func_name, kw_name);
+        #else
+        "%s() got multiple values for keyword argument '%s'", func_name,
+        PyString_AsString(kw_name));
+        #endif
 }
 
 /* ParseKeywords */
@@ -8096,6 +7570,24 @@ bad:
     return -1;
 }
 
+/* RaiseTooManyValuesToUnpack */
+static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected) {
+    PyErr_Format(PyExc_ValueError,
+                 "too many values to unpack (expected %" CYTHON_FORMAT_SSIZE_T "d)", expected);
+}
+
+/* RaiseNeedMoreValuesToUnpack */
+static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index) {
+    PyErr_Format(PyExc_ValueError,
+                 "need more than %" CYTHON_FORMAT_SSIZE_T "d value%.1s to unpack",
+                 index, (index == 1) ? "" : "s");
+}
+
+/* RaiseNoneIterError */
+static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+}
+
 /* RaiseException */
 #if PY_MAJOR_VERSION < 3
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb,
@@ -8254,6 +7746,51 @@ bad:
     return;
 }
 #endif
+
+/* IterFinish */
+static CYTHON_INLINE int __Pyx_IterFinish(void) {
+#if CYTHON_FAST_THREAD_STATE
+    PyThreadState *tstate = __Pyx_PyThreadState_Current;
+    PyObject* exc_type = tstate->curexc_type;
+    if (unlikely(exc_type)) {
+        if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) {
+            PyObject *exc_value, *exc_tb;
+            exc_value = tstate->curexc_value;
+            exc_tb = tstate->curexc_traceback;
+            tstate->curexc_type = 0;
+            tstate->curexc_value = 0;
+            tstate->curexc_traceback = 0;
+            Py_DECREF(exc_type);
+            Py_XDECREF(exc_value);
+            Py_XDECREF(exc_tb);
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+    return 0;
+#else
+    if (unlikely(PyErr_Occurred())) {
+        if (likely(PyErr_ExceptionMatches(PyExc_StopIteration))) {
+            PyErr_Clear();
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+    return 0;
+#endif
+}
+
+/* UnpackItemEndCheck */
+static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected) {
+    if (unlikely(retval)) {
+        Py_DECREF(retval);
+        __Pyx_RaiseTooManyValuesError(expected);
+        return -1;
+    }
+    return __Pyx_IterFinish();
+}
 
 /* GetAttr */
 static CYTHON_INLINE PyObject *__Pyx_GetAttr(PyObject *o, PyObject *n) {

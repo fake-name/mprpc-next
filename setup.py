@@ -4,7 +4,7 @@ from setuptools import setup, Extension
 
 setup(
     name='mprpc',
-    version='0.1.18',
+    version='0.2.0',
     description='A fast MessagePack RPC library',
     long_description=open('README.rst').read(),
     author='Studio Ousia',

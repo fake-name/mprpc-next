@@ -16,10 +16,6 @@ cdef class RPCServer:
 
     This class is assumed to be used with gevent StreamServer.
 
-    :param str pack_encoding: (optional) Character encoding used to pack data
-        using Messagepack.
-    :param str unpack_encoding: (optional) Character encoding used to unpack
-        data using Messagepack
     :param dict pack_params: (optional) Parameters to pass to Messagepack Packer
     :param dict unpack_params: (optional) Parameters to pass to Messagepack
         Unpacker
@@ -38,23 +34,20 @@ cdef class RPCServer:
     """
 
     cdef _packer
-    cdef _unpack_encoding
     cdef _unpack_params
     cdef _tcp_no_delay
     cdef _methods
     cdef _address
 
     def __init__(self, *args, **kwargs):
-        pack_encoding = kwargs.pop('pack_encoding', 'utf-8')
         pack_params = kwargs.pop('pack_params', dict(use_bin_type=True))
 
-        self._unpack_encoding = kwargs.pop('unpack_encoding', 'utf-8')
         self._unpack_params = kwargs.pop('unpack_params', dict(use_list=False))
 
         self._tcp_no_delay = kwargs.pop('tcp_no_delay', False)
         self._methods = {}
 
-        self._packer = msgpack.Packer(encoding=pack_encoding, **pack_params)
+        self._packer = msgpack.Packer(**pack_params)
 
         self._address = local()
         self._address.client_host = None
@@ -84,8 +77,7 @@ cdef class RPCServer:
         cdef bytes data
         cdef int msg_id
 
-        unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,
-                                    **self._unpack_params)
+        unpacker = msgpack.Unpacker(**self._unpack_params)
         while True:
             data = conn.recv(SOCKET_RECV_SIZE)
             if not data:
@@ -100,8 +92,7 @@ cdef class RPCServer:
             if type(req) not in (tuple, list):
                 self._send_error("Invalid protocol", -1, conn, "")
                 # reset unpacker as it might have garbage data
-                unpacker = msgpack.Unpacker(encoding=self._unpack_encoding,
-                                            **self._unpack_params)
+                unpacker = msgpack.Unpacker(**self._unpack_params)
                 continue
 
             (msg_id, method, args) = self._parse_request(req)
