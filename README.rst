@@ -3,6 +3,7 @@ mprpc-next
 
 mprpc is a lightweight `MessagePack RPC <https://github.com/msgpack-rpc/msgpack-rpc>`_ library. It enables you to easily build a distributed server-side system by writing a small amount of code. It is built on top of `gevent <http://www.gevent.org/>`_ and `MessagePack <http://msgpack.org/>`_.
 
+The original author (@studio-ousia) EoLed MPRPC, but the suggested replacement (gRPC) is completely different, and in many cases fundamentally incompatible. Additionally, there's no real reason (aside from maintenance burden) that they dropped maintenance, so I figure I'll just fork it and continue. I'm grateful for all they did up to this point. 
 
 Installation
 ------------
